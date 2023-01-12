@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.mylib.HopeMapper">
+		
+		<!-- 희망 도서 신청 -->
+		<insert id="insert_hope">
+			insert into hope values(null, #{user_id}, #{book_title}, #{book_author},
+			 #{book_publisher}, #{book_pubDate}, #{book_isbn}, #{note}, #{book_price}, 0, null, current_timestamp );
+		</insert>		
+		 
+		<!-- 희망 도서 total -->
+		<select id="get_total" resultType="int">
+			select count(*) 
+			  from hope
+			 where user_id = #{user_id} <include refid="criteria"></include>
+		</select>
+		
+		<!-- 희망 도서 리스트 -->
+		<select id="hope_list" resultType="com.library.model.mylib.HopeDTO">
+			select * 
+			  from hope
+			 where user_id = #{user_id} <include refid="criteria"></include>
+			  order by hope_no 
+			  limit #{cri.skip}, #{cri.amount}
+		</select>
+		
+		<!-- 희망 도서 정보 조회 -->
+		<select id="hope_info" resultType="com.library.model.mylib.HopeDTO">
+			select * 
+			  from hope
+			 where user_id = #{user_id} and hope_no = #{hope_no}
+		</select>
+		
+		<sql id="criteria">
+	        <if test="cri.type != null">
+			  	
+		  		<if test="cri.type == 'all'"> 
+		  			and hope_status in (-1, 0, 1)
+		  		</if>
+		  		
+		  		<if test="cri.type == 'process'">
+		  			and hope_status = 0
+		  		</if>
+		  		
+		  		<if test="cri.type == 'own'">
+		  			and hope_status = 1
+		  		</if>
+		  		
+		  		<if test="cri.type == 'cancel'">
+		  			and hope_status = -1
+		  		</if>
+			  		
+			</if>
+	    </sql>
+		
+	</mapper>

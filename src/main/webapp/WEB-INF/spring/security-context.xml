@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:s="http://www.springframework.org/schema/security"
+   xsi:schemaLocation="http://www.springframework.org/schema/security 
+                  http://www.springframework.org/schema/security/spring-security.xsd
+                  http://www.springframework.org/schema/beans 
+                  http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+      <!-- 접근 거부 Bean -->
+      <bean id="customAccessDenied" class="com.library.security.CustomAccessDeniedHandler"></bean> 
+
+      <!-- 로그인 성공 Bean -->
+      <bean id="customLoginSuccess" class="com.library.security.CustomLoginSuccessHandler"></bean> 
+
+      <!-- 비밀번호 암호화 Bean -->
+      <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean> 
+      
+      <!-- Service Bean -->
+      <bean id="customUserDetailService" class="com.library.security.CustomUserDetailService"></bean>
+            
+            
+               
+      <s:http>
+         <s:csrf disabled="true"/>
+         <!-- 접근 권한 설정 -->
+         
+         <s:intercept-url pattern="/*" access="permitAll"/>
+         
+         <!-- 나의 도서관 -->
+         <s:intercept-url pattern="/mylib/*" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 도서 대출 -->
+         <s:intercept-url pattern="/search/loan" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/search/statusChk" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 추천 도서 -->
+         <s:intercept-url pattern="/search/regist-book" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/search/regist" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/search/delete-rec" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 공지사항 -->
+         <s:intercept-url pattern="/board/insertNotice" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/insertNoticeForm" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/deleteNotice" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/updateNoticeForm" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/updateNotice" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/uploadNoticeFileAjaxAction" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/deleteNoticeFile" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 분실물 -->
+         <s:intercept-url pattern="/board/articleInsertForm" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/getAttachList" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleDelete" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleModifyForm" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/articleModify" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/uploadAjaxAction" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/deleteFile" access="hasRole('ROLE_ADMIN')"/>
+         
+         <!-- 묻고 답하기 질문 -->
+         <s:intercept-url pattern="/board/qnaBoardContent" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/qnaBoardWrite" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/qnaBoardInsert" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/qnaBoardEdit" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/qnaBoardUpdate" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/qnaBoardDelete" access="hasRole('ROLE_MEMBER')"/>
+         
+         <!-- 묻고 답하기 답변 -->
+         <s:intercept-url pattern="/board/answerBoardContent" access="hasRole('ROLE_MEMBER')"/>
+         <s:intercept-url pattern="/board/answerBoardWrite" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerBoardEdit" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerBoardUpdate" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/board/answerBoardDelete" access="hasRole('ROLE_ADMIN')"/>
+         
+         
+         <!-- 관리자 -->
+         <s:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+         <s:intercept-url pattern="/master/*" access="hasRole('ROLE_MASTER')"/>
+
+         <!-- 기본 로그인 폼 -->
+         <!-- <s:form-login/> -->
+         
+         <!-- custom 로그인 폼 -->
+         <s:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccess"/>
+         
+         <!-- <s:access-denied-handler error-page="/accessError"/> -->
+         <s:access-denied-handler ref="customAccessDenied"/> <!-- 접근 거부시 Bean 참조 -->
+
+         <s:logout logout-url="/customLogout" invalidate-session="true"/> <!-- 로그아웃 url -->
+         
+      </s:http>
+      
+      <s:authentication-manager>
+      
+         <!-- customUserDetailService Bean 사용하여 로그인  -->
+         <s:authentication-provider user-service-ref="customUserDetailService">
+             
+            <!-- bcryptPasswrodEncoder Bean 참조 -->
+            <s:password-encoder ref="bcryptPasswordEncoder"/> 
+         
+         </s:authentication-provider>
+         
+      </s:authentication-manager>
+
+
+</beans>

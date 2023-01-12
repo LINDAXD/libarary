@@ -1,0 +1,20 @@
+
+/* 버튼속성 */
+.btn {
+	width: 100px;
+    height: 35px;
+    background-color: #266ac4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn:focus, .btn:active{
+    border: none; box-shadow: none;
+}
+
+.btn:hover{
+    background-color: #215aa3;
+}

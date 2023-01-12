@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.board.EnquiryBoardMapper">
+	
+	<!-- 본문 -->
+	<select id="enquiryContent" resultType="com.library.model.board.EnquiryBoardDTO">
+		select * from enquiry where enquiry_no = #{enquiry_no}
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="updateView">
+		update enquiry 
+		   set enquiry_hits = (enquiry_hits + 1) 
+		where enquiry_no  = #{enquiry_no}
+	</update>
+
+
+<!-- 등록 / 수정 / 삭제 -->	
+	<!-- 게시물 등록 -->
+	<insert id="enquiryBoardInsert">
+		insert into enquiry(enquiry_title, enquiry_content, writer_id, writer_name)
+		values(#{enquiry_title}, #{enquiry_content}, #{writer_id}, #{writer_name})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="enquiryBoardUpdate">
+		update enquiry 
+		   set enquiry_title = #{enquiry_title}, enquiry_content = #{enquiry_content}
+		 where enquiry_no = #{enquiry_no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="enquiryBoardDelete">
+		delete from enquiry where enquiry_no = #{enquiry_no}
+	</delete>
+	
+	<select id="id_duplicate" resultType="String">
+		select writer_id from enquiry where enquiry_no = #{enquiry_no}
+	</select>
+	
+	
+<!-- 게시판(페이징) / 총 게시물 / 게시판 정렬 -->
+<resultMap type="com.library.model.board.EnquiryBoardDTO" id="enquiryBoardMap">
+	<!-- 기본키 -->
+	<id property="enquiry_no" column="enquiry_no"/>
+	<result property="enquiry_no" column="enquiry_no"/>
+	<result property="enquiry_title" column="enquiry_title"/>
+	<result property="enquiry_content" column="enquiry_content"/>
+	<result property="writer_id" column="writer_id"/>
+	<result property="writer_name" column="writer_name"/>
+	<result property="enquiry_hits" column="enquiry_hits"/>
+	<result property="enquiry_reg_date" column="enquiry_reg_date"/>
+	
+	<collection property="answerList" resultMap="answerList" />
+
+</resultMap>
+
+<resultMap type="com.library.model.board.AnswerBoardDTO" id="answerList">
+	<!-- 기본키 -->
+	<id property="answer_no" column="answer_no"/>
+	<result property="answer_no" column="answer_no"/>
+	<result property="enquiry_no" column="enquiry_no"/>
+	<result property="answer_title" column="answer_title"/>
+	<result property="answer_content" column="answer_content"/>
+	<result property="a_writer_id" column="a_writer_id"/>
+	<result property="a_writer_name" column="a_writer_name"/>
+	<result property="answer_hits" column="answer_hits"/>
+	<result property="answer_reg_date" column="answer_reg_date"/>
+
+</resultMap>
+
+	<!-- 게시판 전체 조회 -->
+	<select id="getListPage" resultMap="enquiryBoardMap">
+		select *
+		  from enquiry as e left outer join answer as a  
+			on e.enquiry_no = a.enquiry_no
+			<include refid="criteria"></include>
+		order by e.enquiry_no desc limit #{skip}, #{amount}	
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from enquiry <include refid="criteria"></include>
+	</select>	
+	
+	<select id="reset" statementType="CALLABLE">
+		call enquiry_reset()
+	</select>	
+	
+	<!-- 관리자 계정 확인 -->
+	<select id="check_admin" resultType="int">
+		select count(*) as count
+		  from member_auth 
+		 where user_id = #{user_id} and auth = 'ROLE_ADMIN'
+	</select>
+	
+	
+	<sql id="criteria">
+		<if test="type != null">
+			<if test="keyword != null">
+			
+				<if test="type == 'TC'">
+					where enquiry_title like concat('%', #{keyword}, '%') or enquiry_content like concat('%', #{keyword}, '%')
+				</if>
+				
+				<if test="type == 'title'">
+					where enquiry_title like concat('%', #{keyword}, '%')
+				</if>
+                 
+				<if test="type == 'content'">
+					where enquiry_content like concat('%', #{keyword}, '%')
+				</if>
+                 
+			</if>
+		</if>
+	</sql>
+	
+
+
+
+</mapper>

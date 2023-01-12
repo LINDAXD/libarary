@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.admin.LoanMapper">
+		
+
+		<!-- 대출 도서 건 수 -->
+		<select id="get_total" resultType="int">
+			select count(*) from loan_history 
+			where return_status = false <include refid="criteria"></include>
+		</select>
+		
+		<!-- 대출 중 리스트 페이징 및 검색 시 -->
+		<select id="loan_list_paging" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from loan_history 
+			  where return_status = false <include refid="criteria"></include>
+			  order by loan_date desc
+			  limit #{skip}, #{amount}
+		</select>
+		
+		<!-- 도서 반납 처리 -->
+		<update id="return_book">
+			update loan_history
+			   set return_date = current_timestamp, return_status = true
+			 where loan_no = #{loan_no} 
+		</update>
+		
+		<!-- 도서 반납 시 회원 대출 중 도서 수 감소 -->
+		<update id="decrease_count">
+			update member
+			   set user_book_count = user_book_count - 1
+			 where user_id = #{user_id}
+		</update>
+	
+		<!-- 연체일 조회 -->	
+		<select id="search_overdue" resultType="int">
+			select datediff(return_period, current_timestamp) as '연체일' from loan_history 
+			 where loan_no = #{loan_no} 
+		</select>
+		
+		<!-- 연체 일 만큼 대출 불가 일 수 추가 -->
+		<update id="update_user_overdue">
+			update member
+			   set user_overdue_date = user_overdue_date + #{date}
+			 where user_id = #{user_id}
+		</update>
+ 		
+		<sql id="criteria">
+	        <if test="type != null">
+			  	<if test="keyword != null">
+			  	
+			  		<if test="type == 'user_id'">
+			  			and user_id like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'book_title'">
+			  			and book_title like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'book_isbn'">
+			  			and book_isbn like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'loan_date'">
+			  			and loan_date like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+				</if>
+			</if>
+	    </sql>
+		
+	</mapper>

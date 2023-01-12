@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.admin.MasterMapper">
+		
+		<!-- 회원 total -->
+		<select id="get_total" resultType="int">
+			select count(*)
+			  from member as m join member_auth as ma 
+			    on m.user_id = ma.user_id
+			    where ma.auth = 'ROLE_ADMIN' <include refid="criteria"></include> 
+		</select>
+		
+		<!-- 회원 리스트 페이징 및 검색 시 -->
+		<select id="list_paging" resultType="com.library.model.member.MemberDTO">
+			select m.*
+			  from member as m join member_auth as ma 
+			    on m.user_id = ma.user_id
+			 where ma.auth = 'ROLE_ADMIN' <include refid="criteria"></include>
+			 order by user_reg_date 
+		</select>
+		
+		<!-- 관리자 권한 부여 -->
+		<insert id="grant">
+			insert into member_auth values(#{user_id}, 'ROLE_ADMIN')
+		</insert>
+		
+		<!-- 관리자 권한 회수 -->
+		<delete id="revoke">
+			delete
+			  from member_auth
+			 where user_id = #{user_id} and auth = 'ROLE_ADMIN'
+		</delete>
+		
+		<!-- 회원 검색 -->
+		<select id="search" resultType="com.library.model.member.MemberDTO">
+			select *
+			  from member
+			 where user_id = #{user_id} 
+		</select>
+		
+		<!-- 관리자 권한 검색 -->
+		<select id="admin_check" resultType="int">
+			select count(*)
+			  from member_auth
+			 where user_id = #{user_id} and auth = 'ROLE_ADMIN'
+		</select>
+		
+ 		
+		<sql id="criteria">
+	        <if test="type != null">
+			  	<if test="keyword != null">
+			  	
+			  		<if test="type == 'user_id'">
+			  			and m.user_id like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'user_name'">
+			  			and m.user_name like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'user_tel'">
+			  			and m.user_tel like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'user_email'">
+			  			and m.user_email like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+				</if>
+			</if>
+	    </sql>
+		
+	</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.board.AnswerBoardMapper">
+	
+	<!-- 본문 -->
+ 	<select id="answerContent" resultType="com.library.model.board.AnswerBoardDTO">
+		select a.*, e.writer_id from answer a join enquiry e on e.enquiry_no = a.enquiry_no where answer_no = #{answer_no}
+	</select> 
+	
+	<!-- 조회수 -->
+ 	<update id="updateView">
+		update answer 
+		   set answer_hits = (answer_hits + 1) 
+		where answer_no  = #{answer_no}
+	</update>
+
+
+<!-- 등록 / 수정 / 삭제 -->	
+	<!-- 게시물 등록 -->
+	<insert id="answerBoardInsert">
+		insert into answer(enquiry_no, answer_title, answer_content, a_writer_id, a_writer_name)
+		values(#{enquiry_no}, #{answer_title}, #{answer_content}, #{a_writer_id}, #{a_writer_name})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+ 	<update id="answerBoardUpdate">
+		update answer 
+		   set answer_title = #{answer_title}, answer_content = #{answer_content}
+		 where answer_no = #{answer_no}
+	</update> 
+	
+	<!-- 게시글 삭제 -->
+ 	<delete id="answerBoardDelete">
+		delete from answer where answer_no = #{answer_no}
+	</delete> 
+	
+
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.mylib.MyPageMapper">
+		
+		<!-- 회원 정보 출력 -->
+		<select id="my_view" resultType="com.library.model.member.MemberDTO">
+			select * from member where user_id = #{user_id}
+		</select>
+ 		
+ 		<!-- 회원 정보 수정 -->
+ 		<update id="my_modify">
+ 			update member
+ 			   set user_name = #{user_name}, user_tel = #{user_tel}, user_birth = #{user_birth}, user_zip = #{user_zip},
+ 			   			  user_address = #{user_address}, user_address_detail = #{user_address_detail}
+ 			  where user_id = #{user_id}
+ 		</update>
+ 		
+ 		<!-- 회원 탈퇴 -->
+ 		<delete id="my_secession">
+ 			delete
+ 			  from member
+ 			 where user_id = #{user_id}
+ 		</delete>
+ 		
+ 		<!-- 탈퇴회원 테이블에 입력 -->
+ 		<insert id="insert_secession">
+ 			insert into secession_member values(#{user_id}, #{user_email});
+ 		</insert>
+ 		
+ 		<!-- 비밀번호 변경 -->
+ 		<update id="modify_pw">
+ 			update member
+ 			   set user_pw = #{user_pw}
+ 			 where user_id = #{user_id}
+ 		</update>
+ 		
+	</mapper>
