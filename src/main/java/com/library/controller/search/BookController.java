@@ -302,5 +302,10 @@ public class BookController {
 		model.addAttribute("cri", cri);
 		return "/search/sub2/best_book_detail";
 	}
+	
+
+	
+	
+	
 
 }
