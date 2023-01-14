@@ -8,7 +8,6 @@
 	<title>라온도서관 > 자료검색 > 도서검색</title>
 </head>
 <link rel="stylesheet" href="/resources/css/search/book_detail.css">
-<link rel="stylesheet" href="/resources/css/search/review.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
 <script
@@ -94,8 +93,6 @@
                         </div>
 
                     </div>
-                    
-                  
                     <div style="display: flex; justify-content: center; align-items: center;">
                     
                         <form id="loan" onsubmit="return false;" method="post">
@@ -141,14 +138,8 @@
                         ${book.description}
 
                     </div>
-                <div class="review_title">
-                <h3>REVIEW</h3><input type="button" class="review_button" value="리뷰작성하기">
-                <form id="review_form" method="POST" onsubmit="return false;">
-                <textarea type="text" class="review_input" name="review_input" placeholder="후기를 작성해주세요." cols="140" rows="10" ></textarea><input type="button" class="review_button" value="이미지첨부">
-                </form>
-                </div>
-                </div>
 
+                </div>
                 
             </div>
 
@@ -208,51 +199,6 @@
 					
 			});
 		});
-		
-		
-        // 후기 전송
-        $(document).ready(function () {
-        	let reviewCheck = false;            // 후기
-            $(".review_button").click(function () {
-
-                /* 입력값 변수 */
-                let review = $('.review_input').val();                 // 후기 입력란
-				let email = $('.user_email').val(); 
-			
-				if(email == "") {
-					alert("로그인 후 이용해주세요");
-					location.href="/member/login";
-				} else {
-					
-                // 최종 유효성 검사
-                // 후기 유효성 검사 
-                if (review == "" ) {
-                   alert('후기를 입력해주세요!!!');
-                    reviewCheck = false;
-                } else {
-                    reviewCheck = true;
-                }
-
-               
-
-                // 최종 유효성 검사 (모든 check 값들이 true일 경우)
-                if (reviewCheck ) {
-                    if (confirm("후기를 등록하시겠습니까?")) {
-                        alert("후기가 등록되었습니다.")
-                        $("#review_form").attr("onsubmit", "return true;"); //전송할수있다.
-                        $("#review_form").attr("action", "/search/book-detail?amount=10&page=1&type=Title&keyword=d&book_isbn=9771739511136");
-                        $("#review_form").submit();
-                    } else {
-                        alert("취소되었습니다.")
-                    }
-
-                }
-
-                return false;
-				}
-
-            });
-        }); //회원가입 전송 함수 종료
 	</script>
 			
 

@@ -19,7 +19,7 @@
 <body>
 
 	<div class="header">
-    <jsp:include page="../../header.jsp"></jsp:include>
+    <jsp:include page="../header.jsp"></jsp:include>
     </div>
 
     <div class="container">
@@ -50,7 +50,7 @@
             <div class="doc">
 
                 <!-- 왼쪽 사이드바 -->
-                <jsp:include page="../lnb.jsp"></jsp:include>
+                <jsp:include page="lnb.jsp"></jsp:include>
                
                 <!-- 본문 -->
                 <div class="content" style="">
@@ -94,8 +94,6 @@
                         </div>
 
                     </div>
-                    
-                  
                     <div style="display: flex; justify-content: center; align-items: center;">
                     
                         <form id="loan" onsubmit="return false;" method="post">
@@ -142,12 +140,14 @@
 
                     </div>
                 <div class="review_title">
-                <h3>REVIEW</h3><input type="button" class="review_button" value="리뷰작성하기">
+                <h3>REVIEW</h3><button class="review_button" onclick="location.href='/board/qnaBoardWrite'" style="cursor: pointer">리뷰작성하기</button>
+                <!-- <input type="button" class="review_button" value="리뷰작성하기"> -->
                 <form id="review_form" method="POST" onsubmit="return false;">
                 <textarea type="text" class="review_input" name="review_input" placeholder="후기를 작성해주세요." cols="140" rows="10" ></textarea><input type="button" class="review_button" value="이미지첨부">
                 </form>
                 </div>
                 </div>
+
 
                 
             </div>
@@ -158,7 +158,7 @@
  
 	
 	<!-- footer -->
-	<jsp:include page="../../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	
 	<script>
 	
@@ -240,7 +240,7 @@
                     if (confirm("후기를 등록하시겠습니까?")) {
                         alert("후기가 등록되었습니다.")
                         $("#review_form").attr("onsubmit", "return true;"); //전송할수있다.
-                        $("#review_form").attr("action", "/search/book-detail?amount=10&page=1&type=Title&keyword=d&book_isbn=9771739511136");
+                        $("#review_form").attr("action", "/review/register");
                         $("#review_form").submit();
                     } else {
                         alert("취소되었습니다.")
@@ -253,6 +253,44 @@
 
             });
         }); //회원가입 전송 함수 종료
+        
+        
+        
+        
+
+
+        $(function() {
+        	
+        	CKEDITOR.replace('popContent' , {
+        		 filebrowserImageUploadUrl: "/upload?boardName=qna",
+        		 height: 500                                                  
+            });
+
+        	
+        	$('.sub3').addClass("active");
+        	
+        	$(".write_btn").on("click", function() {
+        		
+        		 var title = $("#title").val();
+
+                 if (title == "") {
+
+                     $("#title").focus();
+                     
+                     return false;
+                 }
+        	
+        		if(confirm('등록하시겠습니까?')) {
+        			alert("게시글이 등록되었습니다.");
+                }else {
+                	return false;
+                }
+        	
+        	});
+        	
+        });
+        
+        
 	</script>
 			
 

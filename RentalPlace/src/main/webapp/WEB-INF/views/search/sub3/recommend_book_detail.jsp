@@ -5,10 +5,9 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
-	<title>라온도서관 > 자료검색 > 도서검색</title>
+	<title>라온도서관 > 자료검색 > 추천도서</title>
 </head>
 <link rel="stylesheet" href="/resources/css/search/book_detail.css">
-<link rel="stylesheet" href="/resources/css/search/review.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
 <script
@@ -17,17 +16,17 @@
   crossorigin="anonymous"></script>
 
 <body>
-
+	
 	<div class="header">
     <jsp:include page="../../header.jsp"></jsp:include>
     </div>
-
+    
     <div class="container">
         <div class="sub_title">
             <div class="doc-info">
                 <!-- doc title -->
                 <div class="doc-title">
-                    <h3>도서검색</h3>
+                    <h3>추천도서</h3>
                     <ul>
                         <!-- 홈 btn img -->
                         <li class="first" style="background-image: none;">
@@ -39,7 +38,7 @@
                             <a href="/search/book">자료검색</a>
                         </li>
                         <li>
-                            <a href="/search/book">도서검색</a>
+                            <a href="/search/recommend-book">추천도서</a>
                         </li>
                     </ul>
 
@@ -81,8 +80,16 @@
                                                 <b>가격</b>: 
                                                 <fmt:formatNumber value="${book.priceStandard }" type="currency"/>
                                                 </p>
+                                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                                <form action="/search/delete-rec" method="post" onsubmit="return false;">
+                                                	<input type="hidden" name="book_isbn" value="${book.book_isbn }">
+	                                                <input type="hidden" name="year" value="${year}">
+	                        						<input type="hidden" name="month" value="${month}">
+						                        	<input type="submit" class="btn" value="삭제" style="float: right;">
+						                        </form>
+						                        </sec:authorize>
                                             </td>
-
+	
                                         </tr>
                                     
                                     </tbody>
@@ -94,8 +101,6 @@
                         </div>
 
                     </div>
-                    
-                  
                     <div style="display: flex; justify-content: center; align-items: center;">
                     
                         <form id="loan" onsubmit="return false;" method="post">
@@ -123,15 +128,16 @@
 
                         <span>　</span>
 
-                        <form action="/search/book">
-                        	<input type="hidden" name="amount" value="${cri.amount }">
+                        <form action="/search/recommend-book">
+                        	<input type="hidden" name="year" value="${year}">
+                        	<input type="hidden" name="month" value="${month}">
 							<input type="hidden" name="page" value="${cri.page }">
-							<input type="hidden" name="type" value="${cri.type }">
-							<input type="hidden" name="keyword" value="${cri.keyword }">
                             <button class="btn3" style="display: flex; justify-content: center; align-items: center;">
                                 <img src="/resources/imges/search/book_icon.png" style="width: 30px;">　목록
                             </button>
                         </form>
+                        
+                        
 
                     </div>
 
@@ -141,29 +147,32 @@
                         ${book.description}
 
                     </div>
-                <div class="review_title">
-                <h3>REVIEW</h3><input type="button" class="review_button" value="리뷰작성하기">
-                <form id="review_form" method="POST" onsubmit="return false;">
-                <textarea type="text" class="review_input" name="review_input" placeholder="후기를 작성해주세요." cols="140" rows="10" ></textarea><input type="button" class="review_button" value="이미지첨부">
-                </form>
-                </div>
-                </div>
 
+                </div>
                 
             </div>
 
         </div>
 
     </div>
- 
-	
+    
 	<!-- footer -->
 	<jsp:include page="../../footer.jsp"></jsp:include>
 	
 	<script>
 	
 		$(function() {
-			$(".sub1").addClass("active");
+			$(".sub3").addClass("active");
+			
+			$(".btn").click(function(){
+				if (confirm("해당 추천도서를 삭제하시겠습니까?")){
+					alert("삭제되었습니다.");
+					$("form").attr("onsubmit", "return true;");
+					$("form").submit();
+				} else {
+					alert("삭제가 취소되었습니다.");
+				}
+			})
 			 
 			$("#loan_btn").click(function() {
 				
@@ -176,7 +185,6 @@
 				} else {
 					
 					if (confirm("도서를 대출하시겠습니까?")) {
-					
 						let data = {
 		           				book_isbn: book_isbn
 		           		};
@@ -200,59 +208,13 @@
 		           				}
 		           			}
 		           		});
-					
+						
 					}
-					
 					
 				} 
 					
 			});
 		});
-		
-		
-        // 후기 전송
-        $(document).ready(function () {
-        	let reviewCheck = false;            // 후기
-            $(".review_button").click(function () {
-
-                /* 입력값 변수 */
-                let review = $('.review_input').val();                 // 후기 입력란
-				let email = $('.user_email').val(); 
-			
-				if(email == "") {
-					alert("로그인 후 이용해주세요");
-					location.href="/member/login";
-				} else {
-					
-                // 최종 유효성 검사
-                // 후기 유효성 검사 
-                if (review == "" ) {
-                   alert('후기를 입력해주세요!!!');
-                    reviewCheck = false;
-                } else {
-                    reviewCheck = true;
-                }
-
-               
-
-                // 최종 유효성 검사 (모든 check 값들이 true일 경우)
-                if (reviewCheck ) {
-                    if (confirm("후기를 등록하시겠습니까?")) {
-                        alert("후기가 등록되었습니다.")
-                        $("#review_form").attr("onsubmit", "return true;"); //전송할수있다.
-                        $("#review_form").attr("action", "/search/book-detail?amount=10&page=1&type=Title&keyword=d&book_isbn=9771739511136");
-                        $("#review_form").submit();
-                    } else {
-                        alert("취소되었습니다.")
-                    }
-
-                }
-
-                return false;
-				}
-
-            });
-        }); //회원가입 전송 함수 종료
 	</script>
 			
 

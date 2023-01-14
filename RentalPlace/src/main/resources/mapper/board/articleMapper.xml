@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.library.mapper.board.ArticleMapper"> <!-- mapper name  -->
+ 	
+ 	
+ 	<insert id="articleInsert"> <!-- mapper class method name  -->
+		insert into article(article_title, article_content, writer_id, writer_name)
+		values(#{article_title}, #{article_content}, #{writer_id}, #{writer_name})
+		
+		<selectKey resultType="Long" keyProperty="article_no" order="AFTER">
+       	 	SELECT LAST_INSERT_ID()
+    	</selectKey>
+		
+	</insert>
+	
+ 	<select id="list_all" resultType="com.library.model.board.ArticleDTO">
+		select * from article order by article_no desc	 
+	</select> 
+	
+	<select id="articleContent" resultType="com.library.model.board.ArticleDTO">
+		select * from article where article_no = #{article_no}
+	</select>
+	
+	<!-- 게시물 상세보기 이전글 -->
+	<select id="articlePreContent" resultType="com.library.model.board.ArticleDTO">
+		select * from article where article_no = (#{article_no}-1)
+	</select>
+	
+	<!-- 게시물 상세보기 다음글 -->
+	<select id="articleNextContent" resultType="com.library.model.board.ArticleDTO">
+		select * from article where article_no = (#{article_no}+1)
+	</select>
+	
+	<update id="articleViewsCount">
+		update article set article_views = article_views+1 
+		where article_no = #{article_no}
+	</update>  
+	
+	<delete id="articleDelete">
+		delete from article where article_no = #{article_no}
+	</delete>
+	
+ 	<update id="articleUpdate">
+		update article set article_title = #{article_title}, article_content = #{article_content}
+		where article_no = #{article_no}		
+	</update>  
+	
+	<select id="getListPaging" resultType="com.library.model.board.ArticleDTO">  
+       select * from article
+       <include refid="criteria"></include> 
+       order by article_no desc 
+       limit #{skip}, #{amount}
+    </select>
+    
+    <select id="getTotal" resultType="int">
+    	select count(*) from article
+    	<include refid="criteria"></include>   	   
+    </select>
+    
+    <select id="reset" statementType="CALLABLE">
+    	call article_reset()
+    </select>
+    
+    <sql id="criteria">
+           <if test="type != null">
+              <if test="keyword != null">
+              
+                 <if test="type == 'title'">
+                    where article_title like concat('%', #{keyword}, '%')
+                 </if>
+                 
+                 <if test="type == 'content'">
+                    where article_content like concat('%', #{keyword}, '%')
+                 </if>
+                                 
+                 <if test="type == 'TC'">
+                 	where article_title like concat('%', #{keyword}, '%') or 
+                 	article_content like concat('%', #{keyword}, '%')          
+                 </if>
+                 
+            </if>
+         </if>
+     </sql>
+
+
+
+</mapper>

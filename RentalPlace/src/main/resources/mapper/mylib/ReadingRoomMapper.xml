@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.library.mapper.mylib.ReadingRoomMapper">
+
+	<!-- 모든 열람실 출력 -->
+	<select id="getReadingRoomAll" resultType="com.library.model.mylib.ReadingRoomDTO">
+		select * 
+		  from reading_room 
+		 where user_id is not null
+	     order by seat_no
+	</select>
+	
+	<!-- 1열람실 출력 -->
+	<select id="getReadingRoom1SeatsList" resultType="com.library.model.mylib.ReadingRoomDTO">
+		select * 
+		  from reading_room 
+		 where seat_no &lt; 55
+	     order by seat_no
+	</select>
+	
+	<!-- 2열람실 출력 -->
+	<select id="getReadingRoom2SeatsList" resultType="com.library.model.mylib.ReadingRoomDTO">
+		select * 
+	 	  from reading_room 
+	 	 where seat_no &gt; 54 and seat_no &lt; 97
+		 order by seat_no;
+	</select>
+	
+	<!-- 노트북실 출력 -->
+	<select id="getNbRoomSeatsList" resultType="com.library.model.mylib.ReadingRoomDTO">
+		select *
+		  from reading_room where seat_no &gt; 96
+		 order by seat_no
+	</select>
+	
+	<!-- 열람실 예약 좌석 정보 -->
+	<select id="mySeatInfo" resultType="com.library.model.mylib.ReadingRoomDTO">
+		select * 
+		  from reading_room
+		 where user_id = #{user_id}
+	</select>
+	
+	<!-- 좌석 예약 -->
+	<update id="bookingSeat">
+		update reading_room
+		   set user_id = #{user_id}, 
+		   	   checkin_time = current_timestamp, 
+		   	   checkout_time = CASE 
+		   	   						WHEN substr(current_timestamp, 12, 2) >= 15 
+		   	   						THEN date_add(curdate(), interval 18 hour)
+		   	   						ELSE date_add(current_timestamp, interval 3 hour)
+		   	   				   END
+		 where seat_no = #{seat_no}
+	</update>
+	
+	<!-- 좌석 반납 -->
+	<delete id="returnSeat">
+		update reading_room
+		   set user_id = null, checkin_time = null, checkout_time = null
+		 where user_id = #{user_id}
+	</delete>
+		
+	<!-- 좌석 연장 -->
+	<update id="extendSeat">
+		update reading_room
+		   set checkout_time = CASE 
+		   	   						WHEN substr(current_timestamp, 12, 2) >= 16 
+		   	   						THEN date_add(curdate(), interval 18 hour)
+		   	   						ELSE date_add(current_timestamp, interval 2 hour)
+		   	   				   END
+		 where user_id = #{user_id}
+	</update>
+
+	<!-- 좌석 상태 확인 -->
+	<select id="seat_check" resultType="int">
+		select count(*)
+		  from reading_room
+		 where seat_no = #{seat_no} and user_id is null
+	</select>
+
+
+
+
+
+
+	<!-- 잔여 좌석 | 사용 중인 좌석 -->
+	<!-- 잔여 좌석 -->
+	<select id="rd1Room_usingSeat" resultType="int">
+		select count(*) - (select count(DISTINCT(user_id)) from reading_room where seat_no &lt; 55)
+		  from reading_room
+		  where seat_no &lt; 55
+	</select>
+	<!-- 사용 중 좌석 -->
+	<select id="rd1Room_usedSeat" resultType="int">
+		select count(DISTINCT(user_id))
+		  from reading_room
+		 where seat_no &lt; 55
+	</select>
+	
+	<!-- 잔여 좌석 | 사용 중인 좌석 -->
+	<!-- 잔여 좌석 -->
+	<select id="rd2Room_usingSeat" resultType="int">
+		select count(*) - (select count(DISTINCT(user_id)) from reading_room where seat_no &gt; 54 and seat_no &lt; 97)
+		  from reading_room
+		  where seat_no &gt; 54 and seat_no &lt; 97
+	</select>
+	<!-- 사용 중 좌석 -->
+	<select id="rd2Room_usedSeat" resultType="int">
+		select count(DISTINCT(user_id))
+		  from reading_room
+		 where seat_no &gt; 54 and seat_no &lt; 97
+	</select>
+	
+	<!-- 잔여 좌석 | 사용 중인 좌석 -->
+	<!-- 잔여 좌석 -->
+	<select id="nbRoom_usingSeat" resultType="int">
+		select count(*) - (select count(DISTINCT(user_id)) from reading_room where seat_no &gt; 96)
+		  from reading_room
+		  where seat_no &gt; 96
+	</select>
+	<!-- 사용 중 좌석 -->
+	<select id="nbRoom_usedSeat" resultType="int">
+		select count(DISTINCT(user_id))
+		  from reading_room
+		 where seat_no &gt; 96
+	</select>
+		
+	
+	<!-- 열람실 좌석 insert -->
+	<select id="insert">
+		insert into reading_room values(#{seat_no}, null, null, null)
+	</select>
+	
+</mapper>

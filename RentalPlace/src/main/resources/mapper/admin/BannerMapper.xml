@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.admin.BannerMapper">
+		
+		<!-- 배너 출력 -->
+		<select id="banner_list" resultType="com.library.model.admin.BannerDTO">
+			select * from banner order by reg_date
+		</select>
+		
+		<delete id="banner_del">
+			delete 
+			  from banner
+			 where path = #{path}
+		</delete> 
+		
+		<insert id="banner_add">
+			insert into banner
+			values (#{user_id}, #{path}, current_timestamp)
+		</insert>
+		
+	</mapper>

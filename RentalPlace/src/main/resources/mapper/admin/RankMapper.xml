@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.library.mapper.admin.RankMapper"> <!-- 인터페이스 참조 -->
+ 
+	<select id="rank_list" resultType="com.library.model.member.MemberDTO">
+		select m.*, count(*) as count
+		  from loan_history lh join member m
+		    on lh.user_id = m.user_id 
+		 where loan_date
+			between concat(#{year}, '-', #{month}, '-01') and concat(#{year}, '-', #{month}, '-31' )
+			   and lh.return_status = true 
+		 group by user_id
+		 order by count desc
+ 		 limit 0, 10
+	</select>
+	
+</mapper>  

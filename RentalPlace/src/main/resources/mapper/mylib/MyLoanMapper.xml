@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.mylib.MyLoanMapper">
+		
+		<!-- 대출 도서 건 수 -->
+		<select id="get_total" resultType="int">
+			select count(*) from loan_history 
+			where user_id = #{user_id} and return_status = false
+		</select>
+		
+		<!-- 대출 중 리스트 출력, (도서정보, 연체 일)-->
+		<select id="loan_list_paging" resultType="com.library.model.search.BookDTO">
+			select *, datediff(return_period, current_timestamp) as 'overdue_date'
+			  from loan_history 
+			  where user_id = #{user_id} and return_status = false
+			  order by loan_date desc
+		</select>
+		
+		<!-- 대출 정지일 -->
+		<select id="get_overdue_date" resultType="int">
+			select user_overdue_date
+			  from member
+			 where user_id = #{user_id}
+		</select>
+		
+		<!-- 연체 도서 수 -->
+		<select id="get_overdue" resultType="int">
+		
+			select count(*) from loan_history 
+			where datediff(return_period, current_timestamp) &lt; 0 
+			and return_status = false and user_id = #{user_id}
+	
+		</select>
+		
+	</mapper>

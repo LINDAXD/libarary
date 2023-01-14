@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.admin.LoanHistoryMapper">
+		
+
+		<!-- 대출 도서 건 수 -->
+		<select id="get_total" resultType="int">
+			select count(*) from loan_history 
+			<include refid="criteria"></include>
+		</select>
+		
+		<!-- 대출 내역 페이징 및 검색 시 -->
+		<select id="loan_history" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from loan_history 
+			  <include refid="criteria"></include>
+			  order by loan_date desc
+			  limit #{skip}, #{amount}
+		</select>
+		
+ 		
+		<sql id="criteria">
+	        <if test="type != null">
+			  	<if test="keyword != null">
+			  	
+			  		<if test="type == 'user_id'">
+			  			where user_id like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'book_title'">
+			  			where book_title like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'book_isbn'">
+			  			where book_isbn like concat('%', #{keyword}, '%')
+			  		</if>
+			  		
+			  		<if test="type == 'loan_date'">
+			  			where loan_date like concat('%', #{keyword}, '%')
+			  		</if> 
+			  		
+				</if>
+			</if>
+	    </sql>
+		
+	</mapper>

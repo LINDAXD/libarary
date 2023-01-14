@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.board.CalendarMapper">
+
+	<!-- 일정 모두 출력 -->
+	<select id="list_all" resultType="com.library.model.board.CalendarDTO"> 
+		select * from calendar
+	</select>
+	
+	<!-- 일정 조건 검색 -->
+	<select id="list_ym" resultType="com.library.model.board.CalendarDTO"> 
+		select * from calendar
+		where start 
+		 	between concat(#{year}, '-', #{month}, '-01') and concat(#{year}, '-', #{month}, '-31' )
+		 order by start
+	</select>
+	
+	<!-- 일정 등록 -->
+	<insert id="insert_cal">
+		insert into calendar values(null, 1, #{user_id}, #{title}, #{start}, #{end}, 1, #{textColor}, "none", "none", current_timestamp);
+	</insert>
+	
+	<!-- 일정 삭제 -->
+	<delete id="delete_cal">
+		delete
+		  from calendar
+		 where cal_no = #{cal_no};
+	</delete>
+	
+	<!-- 휴관일 검색 -->
+	<select id="search_closed" resultType="com.library.model.board.CalendarDTO">
+		select *
+		  from calendar
+		 where start 
+		 	between concat(#{year}, '-', #{month}, '-01') and concat(#{year}, '-', #{month}, '-31' ) 
+		 	and (title = "휴관일" or textColor = "red" or textColor = "#FF0000")
+		 order by start;
+	</select>
+	
+</mapper>

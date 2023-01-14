@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.library.mapper.member.LoginMapper"> <!-- 인터페이스 참조 -->
+
+	<resultMap type="com.library.model.member.MemberDTO" id="memberMap">
+	
+		<id property="user_id" column="user_id" /> <!-- PK 값 -->
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw" />
+		<result property="user_name" column="user_name" />
+		<result property="user_book_count" column="user_book_count" />
+		<result property="user_email" column="user_email" />
+		<result property="user_overdue_date" column="user_overdue_date" />
+		<collection property="authList" resultMap="authList"></collection>
+
+	</resultMap>
+	
+	<resultMap type="com.library.model.member.MemberAuthDTO" id="authList">
+		
+		<result property="user_id" column="user_id" />
+		<result property="auth" column="auth" />
+		
+	</resultMap>
+	
+	<select id="login" resultMap="memberMap">
+		select m.user_id, user_pw, user_name, enabled, auth, user_book_count, user_email, user_overdue_date 
+		  from member as m left outer join member_auth as ma 
+		    on m.user_id = ma.user_id
+		 where m.user_id = #{user_id} 
+	</select>
+
+
+</mapper>  
