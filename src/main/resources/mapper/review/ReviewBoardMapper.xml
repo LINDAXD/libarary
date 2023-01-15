@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.review.RevieMapper">
+	
+	<!-- 본문 -->
+	<select id="reviewContent" resultType="com.library.model.board.reviewBoardDTO">
+		select * from review where review_no = #{review_no}
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="updateView">
+		update review 
+		   set review_hits = (review_hits + 1) 
+		where review_no  = #{review_no}
+	</update>
+
+
+<!-- 등록 / 수정 / 삭제 -->	
+	<!-- 게시물 등록 -->
+	<insert id="reviewBoardInsert">
+		insert into review(review_title, review_content, writer_id, writer_name)
+		values(#{review_title}, #{review_content}, #{writer_id}, #{writer_name})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="reviewBoardUpdate">
+		update review 
+		   set review_title = #{review_title}, review_content = #{review_content}
+		 where review_no = #{review_no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="reviewBoardDelete">
+		delete from review where review_no = #{review_no}
+	</delete>
+	
+	<select id="id_duplicate" resultType="String">
+		select writer_id from review where review_no = #{review_no}
+	</select>
+	
+	
+<!-- 게시판(페이징) / 총 게시물 / 게시판 정렬 -->
+<resultMap type="com.library.model.board.reviewBoardDTO" id="reviewBoardMap">
+	<!-- 기본키 -->
+	<id property="review_no" column="review_no"/>
+	<result property="review_no" column="review_no"/>
+	<result property="review_title" column="review_title"/>
+	<result property="review_content" column="review_content"/>
+	<result property="writer_id" column="writer_id"/>
+	<result property="writer_name" column="writer_name"/>
+	<result property="review_hits" column="review_hits"/>
+	<result property="review_reg_date" column="review_reg_date"/>
+	
+	<collection property="answerList" resultMap="answerList" />
+
+</resultMap>
+
+<resultMap type="com.library.model.board.AnswerBoardDTO" id="answerList">
+	<!-- 기본키 -->
+	<id property="answer_no" column="answer_no"/>
+	<result property="answer_no" column="answer_no"/>
+	<result property="review_no" column="review_no"/>
+	<result property="answer_title" column="answer_title"/>
+	<result property="answer_content" column="answer_content"/>
+	<result property="a_writer_id" column="a_writer_id"/>
+	<result property="a_writer_name" column="a_writer_name"/>
+	<result property="answer_hits" column="answer_hits"/>
+	<result property="answer_reg_date" column="answer_reg_date"/>
+
+</resultMap>
+
+	<!-- 게시판 전체 조회 -->
+	<select id="getListPage" resultMap="reviewBoardMap">
+		select *
+		  from review as e left outer join answer as a  
+			on e.review_no = a.review_no
+			<include refid="criteria"></include>
+		order by e.review_no desc limit #{skip}, #{amount}	
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from review <include refid="criteria"></include>
+	</select>	
+	
+	<select id="reset" statementType="CALLABLE">
+		call review_reset()
+	</select>	
+	
+	<!-- 관리자 계정 확인 -->
+	<select id="check_admin" resultType="int">
+		select count(*) as count
+		  from member_auth 
+		 where user_id = #{user_id} and auth = 'ROLE_ADMIN'
+	</select>
+	
+	
+	<sql id="criteria">
+		<if test="type != null">
+			<if test="keyword != null">
+			
+				<if test="type == 'TC'">
+					where review_title like concat('%', #{keyword}, '%') or review_content like concat('%', #{keyword}, '%')
+				</if>
+				
+				<if test="type == 'title'">
+					where review_title like concat('%', #{keyword}, '%')
+				</if>
+                 
+				<if test="type == 'content'">
+					where review_content like concat('%', #{keyword}, '%')
+				</if>
+                 
+			</if>
+		</if>
+	</sql>
+	
+
+
+
+</mapper>

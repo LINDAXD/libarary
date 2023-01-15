@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.review.ReviewMapper">
+	
+	<!-- 본문 -->
+ 	<select id="reviewanswerContent" resultType="com.library.model.review.ReviewDTO">
+		select a.*, e.writer_id from review_answer a join review e on e.review_no = a.review_no where review_answer_no = #{review_answer_no}
+	</select> 
+	
+	<!-- 조회수 -->
+ 	<update id="updateView">
+		update review_answer 
+		   set review_answer_hits = (review_answer_hits + 1) 
+		where review_answer_no  = #{review_answer_no}
+	</update>
+
+
+<!-- 등록 / 수정 / 삭제 -->	
+	<!-- 게시물 등록 -->
+	<insert id="reviewanswerBoardInsert">
+		insert into review_answer(review_no, review_answer_title, review_answer_content, a_writer_id, a_writer_name)
+		values(#{review_no}, #{review_answer_title}, #{review_answer_content}, #{a_writer_id}, #{a_writer_name})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+ 	<update id="reviewanswerBoardUpdate">
+		update review_answer 
+		   set review_answer_title = #{review_answer_title}, review_answer_content = #{review_answer_content}
+		 where review_answer_no = #{review_answer_no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+ 	<delete id="reviewanswerBoardDelete">
+		delete from review_answer where review_answer_no = #{review_answer_no}
+	</delete> 
+	
+
+
+</mapper>
