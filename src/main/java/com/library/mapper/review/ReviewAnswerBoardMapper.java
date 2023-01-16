@@ -9,11 +9,11 @@ public interface ReviewAnswerBoardMapper {
 	public void regiester(ReviewBoardDTO who) throws Exception;
 	
 	
-	public void reviewBoardInsert(ReviewAnswerBoardMapperDTO dto);
-	public void reviewBoardUpdate(ReviewAnswerBoardMapperDTO dto);
-	public void reviewBoardDelete(Long review_no);
+	public void reviewanswerBoardInsert(ReviewAnswerBoardMapperDTO dto);
+	public void reviewanswerBoardUpdate(ReviewAnswerBoardMapperDTO dto);
+	public void reviewanswerBoardDelete(Long review_no);
 
 	/* 본문 / 조회수 */
-	public ReviewAnswerBoardMapperDTO reviewContent(Long review_no);
+	public ReviewAnswerBoardMapperDTO reviewanswerContent(Long review_no);
 	public void updateView(Long review_no);
 }

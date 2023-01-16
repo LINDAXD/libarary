@@ -19,7 +19,7 @@ public class ReviewAnswerBoardServiceImpl implements ReviewAnswerBoardService {
 
 	@Override
 	public ReviewAnswerBoardMapperDTO reviewanswerContent(Long reviewanswer_no) {
-		return aMapper.answerContent(reviewanswer_no);
+		return aMapper.reviewanswerContent(reviewanswer_no);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ReviewAnswerBoardServiceImpl implements ReviewAnswerBoardService {
 
 	@Override
 	public void reviewanswerBoardDelete(Long reviewanswer_no) {
-		aMapper.answerBoardDelete(answer_no);
+		aMapper.reviewanswerBoardDelete(reviewanswer_no);
 	}
 
 	@Override

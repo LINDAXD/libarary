@@ -1,4 +1,4 @@
-package com.library.controller.Review;
+package com.library.controller.review;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -24,7 +24,7 @@ import com.library.service.review.ReviewBoardService;
 import com.library.util.XssUtil;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/review/*")
 public class ReviewController {
 
 	@Autowired
@@ -34,22 +34,22 @@ public class ReviewController {
 	private ReviewAnswerBoardService aBoardService;
 
 	/* 묻고답하기 게시판 */
-	@GetMapping("/qnaBoardList")
-	public String qnaBoardList(Model model, Criteria cri) {
+	@GetMapping("/reviewBoardList")
+	public String reviewBoardList(Model model, Criteria cri) {
 
-		List<ReviewBoardDTO> qnaBoardList = eBoardService.getListPage(cri);
-		model.addAttribute("qnaBoardList", qnaBoardList);
+		List<ReviewBoardDTO> reviewBoardList = eBoardService.getListPage(cri);
+		model.addAttribute("reviewBoardList", reviewBoardList);
 		int total = eBoardService.getTotal(cri);
 		model.addAttribute("total", total);
 		ViewPage vp = new ViewPage(cri, total);
 		model.addAttribute("pageMaker", vp);
 
-		return "/board/sub3/qnaBoardList";
+		return "/review/reviewBoardList";
 	}
 
 	/* 게시물 본문 */
-	@GetMapping("/qnaBoardContent")
-	public String qnaBoardContent(@RequestParam("review_no") String ureview_no, Model model, Criteria cri,
+	@GetMapping("/reviewBoardContent")
+	public String reviewBoardContent(@RequestParam("review_no") String ureview_no, Model model, Criteria cri,
 			Principal principal) {
 
 		Long review_no = Long.parseLong(ureview_no);
@@ -67,7 +67,7 @@ public class ReviewController {
 			model.addAttribute("dto", dto);
 			model.addAttribute("cri", cri);
 
-			return "/board/sub3/qnaBoardContent";
+			return "/review/reviewBoardContent";
 
 		} else if (check == 1) {
 			eBoardService.updateView(review_no);
@@ -75,7 +75,7 @@ public class ReviewController {
 			model.addAttribute("dto", dto);
 			model.addAttribute("cri", cri);
 
-			return "/board/sub3/qnaBoardContent";
+			return "/review/reviewBoardContent";
 		}
 
 		else {
@@ -86,14 +86,14 @@ public class ReviewController {
 
 	/* 등록 / 수정 / 삭제 */
 	/* 게시물 작성 page */
-	@GetMapping("/qnaBoardWrite")
-	public String qnaBoardWrite() {
-		return "/board/sub3/qnaBoardWrite";
+	@GetMapping("/reviewBoardWrite")
+	public String reviewBoardWrite() {
+		return "/review/reviewBoardWrite";
 	}
 
 	/* 게시물 작성 */
-	@PostMapping("/qnaBoardInsert")
-	public String qnaBoardInsert(ReviewBoardDTO dto) {
+	@PostMapping("/reviewBoardInsert")
+	public String reviewBoardInsert(ReviewBoardDTO dto) {
 
 		// 로그인 된 user_id 받아오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -102,17 +102,14 @@ public class ReviewController {
 
 		dto.setWriter_id(id);
 		
-		// 특수문자 치환
-		dto.setReview_title(XssUtil.XssReplace(dto.getReview_title()));
-		
 		eBoardService.reviewBoardInsert(dto);
 
-		return "redirect:/board/qnaBoardList";
+		return "redirect:/review/reviewBoardList";
 	}
 
 	/* 게시물 수정 page */
-	@PostMapping("/qnaBoardEdit")
-	public String qnaBoardEdit(@RequestParam("review_no") String ureview_no, Model model, Criteria cri,
+	@PostMapping("/reviewBoardEdit")
+	public String reviewBoardEdit(@RequestParam("review_no") String ureview_no, Model model, Criteria cri,
 			Principal principal) {
 
 		Long review_no = Long.parseLong(ureview_no);
@@ -126,7 +123,7 @@ public class ReviewController {
 			model.addAttribute("dto", dto);
 			model.addAttribute("cri", cri);
 
-			return "/board/sub3/qnaBoardEdit";
+			return "/review/reviewBoardEdit";
 		} else {
 			return "redirect:/accessError2";
 		}
@@ -134,8 +131,8 @@ public class ReviewController {
 	}
 
 	/* 게시물 수정 */
-	@PostMapping("/qnaBoardUpdate")
-	public String qnaBoardUpdate(ReviewBoardDTO dto, Criteria cri, Principal principal) {
+	@PostMapping("/reviewBoardUpdate")
+	public String reviewBoardUpdate(ReviewBoardDTO dto, Criteria cri, Principal principal) {
 
 		String keyword;
 
@@ -151,15 +148,13 @@ public class ReviewController {
 			try {
 				keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
 			} catch (UnsupportedEncodingException e) {
-				return "redirect:/board/qnaBoardList";
+				return "redirect:/review/reviewBoardList";
 			}
 
-			// 특수문자 치환
-			dto.setReview_title(XssUtil.XssReplace(dto.getReview_title()));
 			
 			eBoardService.reviewBoardUpdate(dto);
 
-			return "redirect:/board/qnaBoardContent?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+			return "redirect:/review/reviewBoardContent?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
 					+ keyword + "&type=" + cri.getType() + "&review_no=" + dto.getReview_no();
 			
 		} else {
@@ -169,8 +164,8 @@ public class ReviewController {
 	}
 
 	/* 게시물 삭제 */
-	@PostMapping("/qnaBoardDelete")
-	public String qnaBoardDelete(Criteria cri, @RequestParam("review_no") String ureview_no, Principal principal) {
+	@PostMapping("/reviewBoardDelete")
+	public String reviewBoardDelete(Criteria cri, @RequestParam("review_no") String ureview_no, Principal principal) {
 
 		String keyword;
 		Long review_no = Long.parseLong(ureview_no);
@@ -188,10 +183,10 @@ public class ReviewController {
 
 				eBoardService.reviewBoardDelete(review_no);
 				eBoardService.reset();
-				return "redirect:/board/qnaBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+				return "redirect:/review/reviewBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
 						+ keyword + "&type=" + cri.getType();
 			} catch (UnsupportedEncodingException e) {
-				return "redirect:/board/qnaBoardList";
+				return "redirect:/review/reviewBoardList";
 			}
 
 		} else if (check == 1) {
@@ -201,10 +196,10 @@ public class ReviewController {
 
 				eBoardService.reviewBoardDelete(review_no);
 				eBoardService.reset();
-				return "redirect:/board/qnaBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+				return "redirect:/review/reviewBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
 						+ keyword + "&type=" + cri.getType();
 			} catch (UnsupportedEncodingException e) {
-				return "redirect:/board/qnaBoardList";
+				return "redirect:/review/reviewBoardList";
 			}
 		}
 
@@ -234,7 +229,7 @@ public class ReviewController {
 			model.addAttribute("dto", dto);
 			model.addAttribute("cri", cri);
 
-			return "/board/sub3/reviewanswerBoardContent";
+			return "/review/reviewanswerBoardContent";
 
 		} else if (check == 1) {
 			aBoardService.updateView(reviewanswer_no);
@@ -242,7 +237,7 @@ public class ReviewController {
 			model.addAttribute("dto", dto);
 			model.addAttribute("cri", cri);
 
-			return "/board/sub3/reviewanswerBoardContent";
+			return "/review/reviewanswerBoardContent";
 
 		} else {
 			return "redirect:/accessError2";
@@ -259,7 +254,7 @@ public class ReviewController {
 		model.addAttribute("review", dto);
 		model.addAttribute("cri", cri);
 
-		return "/board/sub3/reviewanswerBoardWrite";
+		return "/review/reviewanswerBoardWrite";
 	}
 
 	/* 답글 등록 */
@@ -267,12 +262,10 @@ public class ReviewController {
 	public String reviewanswerBoardWrite(ReviewAnswerBoardMapperDTO dto, Criteria cri, Principal principal) {
 		dto.setA_writer_id(principal.getName());
 		
-		// 특수문자 치환
-		dto.setReviewanswer_title(XssUtil.XssReplace(dto.getReviewanswer_title()));
 		
 		aBoardService.reviewanswerBoardInsert(dto);
 
-		return "redirect:/board/qnaBoardList";
+		return "redirect:/review/reviewBoardList";
 	}
 
 	/* 답글 수정 page */
@@ -284,7 +277,7 @@ public class ReviewController {
 		model.addAttribute("reviewanswer", dto);
 		model.addAttribute("cri", cri);
 
-		return "/board/sub3/reviewanswerBoardEdit";
+		return "/review/reviewanswerBoardEdit";
 	}
 
 	/* 게시물 수정 */
@@ -302,14 +295,13 @@ public class ReviewController {
 		try {
 			keyword = URLEncoder.encode(cri.getKeyword(), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			return "redirect:/board/reviewanswerBoardEdit";
+			return "redirect:/review/reviewanswerBoardEdit";
 		}
 
-		// 특수문자 치환
-		dto.setReviewanswer_title(XssUtil.XssReplace(dto.getReviewanswer_title()));
+
 		aBoardService.reviewanswerBoardUpdate(dto);
 
-		return "redirect:/board/reviewanswerBoardContent?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+		return "redirect:/review/reviewanswerBoardContent?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
 				+ keyword + "&type=" + cri.getType() + "&reviewanswer_no=" + dto.getReviewanswer_no();
 	}
 
@@ -323,10 +315,10 @@ public class ReviewController {
 			Long reviewanswer_no = Long.parseLong(ureviewanswer_no);
 			aBoardService.reviewanswerBoardDelete(reviewanswer_no);
 //			eBoardService.reset();
-			return "redirect:/board/qnaBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+			return "redirect:/review/reviewBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
 					+ keyword + "&type=" + cri.getType();
 		} catch (UnsupportedEncodingException e) {
-			return "redirect:/board/qnaBoardList";
+			return "redirect:/review/reviewBoardList";
 		}
 
 	}

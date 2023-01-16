@@ -1,12 +1,8 @@
 package com.library.service.review;
 
-import org.springframework.stereotype.Service;
-
 import com.library.model.review.ReviewAnswerBoardMapperDTO;
 
-@Service
-public class ReviewAnswerBoardService{
-
+public interface ReviewAnswerBoardService {
 	
 	/* 등록 / 수정 / 삭제 */
 	public void reviewanswerBoardInsert(ReviewAnswerBoardMapperDTO dto);
@@ -18,4 +14,6 @@ public class ReviewAnswerBoardService{
 	public ReviewAnswerBoardMapperDTO reviewanswerContent(Long reviewanswer_no);
 	/* 조회수 */
 	public void updateView(Long reviewanswer_no);
+
+	
 }
