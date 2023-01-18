@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.library.model.board.ArticleDTO;
+import com.library.model.review.ReviewBoardDTO;
 import com.library.model.search.BookDTO;
 import com.library.model.search.DateDTO;
 import com.library.page.Criteria;
 import com.library.page.ViewPage;
+import com.library.service.review.ReviewBoardService;
 import com.library.service.search.AladinApi;
 import com.library.service.search.BookService;
 import com.library.util.DateUtil;
@@ -33,6 +36,9 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private ReviewBoardService reviewService;
 
 	// 검색 도서 출력
 	@GetMapping("/book")
@@ -98,6 +104,15 @@ public class BookController {
 					int count = bookService.count(book_isbn);
 					count = 2 - count;
 					model.addAttribute("count", count);
+					
+					// 후기
+					List<ReviewBoardDTO> reviewList = reviewService.getListPage(cri,Long.parseLong(book_isbn));
+					model.addAttribute("reviewList", reviewList);
+
+//					int total = reviewList.getTotal(cri);
+//					model.addAttribute("total", total);
+//					ViewPage vp = new ViewPage(cri, total);
+//					model.addAttribute("pageMaker", vp);
 
 				} else {
 

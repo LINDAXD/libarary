@@ -21,7 +21,7 @@ import com.library.page.Criteria;
 import com.library.page.ViewPage;
 import com.library.service.review.ReviewAnswerBoardService;
 import com.library.service.review.ReviewBoardService;
-import com.library.util.XssUtil;
+
 
 @Controller
 @RequestMapping("/review/*")
@@ -35,9 +35,9 @@ public class ReviewController {
 
 	/* 묻고답하기 게시판 */
 	@GetMapping("/reviewBoardList")
-	public String reviewBoardList(Model model, Criteria cri) {
+	public String reviewBoardList( Model model, Criteria cri, @RequestParam("book_isbn")long book_isbn) {
 
-		List<ReviewBoardDTO> reviewBoardList = eBoardService.getListPage(cri);
+		List<ReviewBoardDTO> reviewBoardList = eBoardService.getListPage(cri,book_isbn);
 		model.addAttribute("reviewBoardList", reviewBoardList);
 		int total = eBoardService.getTotal(cri);
 		model.addAttribute("total", total);
@@ -91,20 +91,24 @@ public class ReviewController {
 		return "/review/reviewBoardWrite";
 	}
 
+	
+	
 	/* 게시물 작성 */
-	@PostMapping("/reviewBoardInsert")
-	public String reviewBoardInsert(ReviewBoardDTO dto) {
+	
+	@GetMapping("/reviewBoardInsert")
+	public String reviewBoardInsert(@RequestParam("book_isbn")Long book_isbn, @RequestParam("review_no")Long ureview_no, ReviewBoardDTO dto) {
 
 		// 로그인 된 user_id 받아오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails) principal;
 		String id = userDetails.getUsername();
 
-		dto.setWriter_id(id);
 		
-		eBoardService.reviewBoardInsert(dto);
+		  dto.setWriter_id(id); dto.setBook_isbn(ureview_no);
+		  eBoardService.reviewBoardInsert(dto);
+		
 
-		return "redirect:/review/reviewBoardList";
+		return "redirect:/search/sub1/book-detail?book_isbn="+ureview_no;
 	}
 
 	/* 게시물 수정 page */

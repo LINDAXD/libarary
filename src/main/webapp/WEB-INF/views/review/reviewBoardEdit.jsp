@@ -92,7 +92,6 @@
                                 <form action="/review/reviewBoardUpdate" method="post" onsubmit="return false;">
                                 	<input type="hidden" name="review_no" value="${dto.review_no}" >
                                 	<input type="hidden" name="writer_id" value="writer_id">
-                                    <input type="hidden" name="writer_name" value="writer_name">
                                     <input type="hidden" name="amount" value="${cri.amount}">
                                 	<input type="hidden" name="page" value="${cri.page}">
                                 	<input type="hidden" name="type" value="${cri.type}">
@@ -106,13 +105,13 @@
                                                 <td>${dto.writer_name}</td>
                                                 <th class="first">작성일</th>
                                                 <td>
-                                                ${fn:substring(dto.enquiry_reg_date, 0, 11)}
+                                                ${fn:substring(dto.review_reg_date, 0, 11)}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" style="padding: 8px 0px;">
-                                                    <textarea id="popContent" name="enquiry_content">
-                                                    ${dto.enquiry_content}</textarea>
+                                                    <textarea id="popContent" name="review_content">
+                                                    ${dto.review_content}</textarea>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -127,7 +126,7 @@
                                 </form>
                                 
                                 <div class="list_wrap">
-                                	<form action="/board/qnaBoardList" method="get">
+                                	<form action="/review/reviewBoardList" method="get">
                                 		<input type="hidden" name="amount" value="${cri.amount}">
                                 		<input type="hidden" name="page" value="${cri.page}">
                                 		<input type="hidden" name="type" value="${cri.type}">
@@ -135,24 +134,7 @@
                                 		<button class="list_btn">목록으로</button>
                                 	</form>
                                 </div>                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+
                                 
                                 
                                 
@@ -207,8 +189,9 @@
 
                     </div>
                 <div class="review_title">
-                <h3>REVIEW</h3><button class="write_btn" onclick="location.href='/board/qnaBoardWrite'" style="cursor: pointer">리뷰작성하기</button>
-                <form id="review_form" method="POST" onsubmit="return false;">
+                <h3>REVIEW</h3>
+                <form id="review_form" method="POST" action="/review/reviewBoardWrite"onsubmit="return false;">
+                <input type="submit" class="write_btn" style="cursor: pointer">리뷰작성하기</button>
                 <textarea type="text" class="review_input" name="review_input" placeholder="후기를 작성해주세요." cols="140" rows="10" ></textarea>
                 </form>
                 </div>

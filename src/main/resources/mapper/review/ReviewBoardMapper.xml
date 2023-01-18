@@ -9,20 +9,13 @@
 	<select id="reviewContent" resultType="com.library.model.review.ReviewBoardDTO">
 		select * from review where review_no = #{review_no}
 	</select>
-	
-	<!-- 조회수 -->
-	<update id="updateView">
-		update review 
-		   set review_hits = (review_hits + 1) 
-		where review_no  = #{review_no}
-	</update>
 
 
 <!-- 등록 / 수정 / 삭제 -->	
 	<!-- 게시물 등록 -->
 	<insert id="reviewBoardInsert">
-		insert into review(review_content, writer_id, writer_name)
-		values(#{review_content}, #{writer_id}, #{writer_name})
+		insert into review(review_content, book_isbn, writer_id)
+		values(#{review_content},#{book_isbn}, #{writer_id})
 	</insert>
 	
 	<!-- 게시글 수정 -->
@@ -49,7 +42,7 @@
 	<result property="reviewanswer_no" column="review_no"/>
 	<result property="review_content" column="review_content"/>
 	<result property="writer_id" column="writer_id"/>
-	<result property="writer_name" column="writer_name"/>
+	<result property="book_isbn" column="book_isbn"/>
 	<result property="review_reg_date" column="review_reg_date"/>
 	
 	<collection property="reviewanswerList" resultMap="reviewanswerList" />
@@ -63,18 +56,18 @@
 	<result property="review_no" column="review_no"/>
 	<result property="reviewanswer_content" column="reviewanswer_content"/>
 	<result property="a_writer_id" column="a_writer_id"/>
-	<result property="a_writer_name" column="a_writer_name"/>
 	<result property="reviewanswer_reg_date" column="reviewanswer_reg_date"/>
 
 </resultMap>
 
 	<!-- 게시판 전체 조회 -->
-	<select id="getListPage" resultMap="reviewBoardMap">
+	<!-- <select id="getListPage" resultMap="reviewBoardMap">
 		select *
-		  from review as e left outer join reviewanswer as a  
-			on e.review_no = a.review_no
-			<include refid="criteria"></include>
-		order by e.review_no desc limit #{skip}, #{amount}	
+		  from review where book_isbn = #{book_isbn}
+	</select> -->
+	<select id="getListPage" resultType="int" parameterType="map">
+		select count(*) from review
+		where book_isbn = #{book_isbn}
 	</select>
 	
 	<select id="getTotal" resultType="int">

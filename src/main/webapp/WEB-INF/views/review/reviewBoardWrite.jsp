@@ -145,7 +145,7 @@
 									<h3>REVIEW</h3>
 									<form action="/review/reviewBoardInsert" method="post"
 										id="review_form" onsubmit="return false;">
-										<input type="hidden" name="writer_name"
+										<input type="hidden" name="writer_name" id=""
 											value="<sec:authentication property="principal.dto.user_name"/>">
 
 
@@ -176,7 +176,7 @@
 												onclick="location.href='/review/reviewBoardList'"
 												style="cursor: pointer">목록으로</button>
 										</div>
-										<button type="submit" class="review_write_btn"
+										<button type="button" class="review_write_btn" id="review_write_btn"
 											style="cursor: pointer">리뷰작성하기</button>
 									</form>
 								</div>
@@ -246,6 +246,10 @@
 						}
 
 					});
+
+			
+			
+			
 		});
 
 

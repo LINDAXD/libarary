@@ -54,8 +54,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 
 	/* 게시판(페이징) / 총 게시물 / 게시판 정렬 */
 	@Override
-	public List<ReviewBoardDTO> getListPage(Criteria cri) {
-		return eMapper.getListPage(cri);
+	public List<ReviewBoardDTO> getListPage(Criteria cri,Long book_isbn) {
+		System.out.println("BOOK_ISBN = ");
+		System.out.println(book_isbn);
+		return eMapper.getListPage(cri, book_isbn);
 	}
 	
 	@Override
