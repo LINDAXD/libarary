@@ -88,6 +88,8 @@ public class BookController {
 	// 도서 상세페이지
 	@GetMapping("/book-detail")
 	public String book_detail(Model model, Criteria cri, @RequestParam String book_isbn) {
+		
+		System.out.println("/search/book-detail 진입");
 
 		// isbn이 null이 아닐 때
 		if (book_isbn != null && book_isbn != "") {
@@ -135,6 +137,8 @@ public class BookController {
 		return "/search/sub1/book_detail";
 	}
 
+	
+	
 	// 책 대출
 	@PostMapping("/loan")
 	public String loan(Model model, Criteria cri, BookDTO book, @RequestParam String detail, Principal principal) {

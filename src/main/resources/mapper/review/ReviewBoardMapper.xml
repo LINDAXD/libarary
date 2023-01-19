@@ -7,7 +7,7 @@
 	
 	<!-- 본문 -->
 	<select id="reviewContent" resultType="com.library.model.review.ReviewBoardDTO">
-		select * from review where review_no = #{review_no}
+		select * from review where book_isbn = #{book_isbn}
 	</select>
 
 
@@ -38,19 +38,19 @@
 <!-- 게시판(페이징) / 총 게시물 / 게시판 정렬 -->
 <resultMap type="com.library.model.review.ReviewBoardDTO" id="reviewBoardMap">
 	<!-- 기본키 -->
-	<id property="reviewanswer_no" column="review_no"/>
-	<result property="reviewanswer_no" column="review_no"/>
+	<id property="review_no" column="review_no"/>
+	<result property="review_no" column="review_no"/>
 	<result property="review_content" column="review_content"/>
 	<result property="writer_id" column="writer_id"/>
 	<result property="book_isbn" column="book_isbn"/>
 	<result property="review_reg_date" column="review_reg_date"/>
 	
-	<collection property="reviewanswerList" resultMap="reviewanswerList" />
+<!-- 	<collection property="reviewanswerList" resultMap="reviewanswerList" /> -->
 
 </resultMap>
 
-<resultMap type="com.library.model.review.ReviewAnswerBoardMapperDTO" id="reviewanswerList">
-	<!-- 기본키 -->
+<!-- <resultMap type="com.library.model.review.ReviewAnswerBoardMapperDTO" id="reviewanswerList">
+	기본키
 	<id property="reviewanswer_no" column="reviewanswer_no"/>
 	<result property="reviewanswer_no" column="reviewanswer_no"/>
 	<result property="review_no" column="review_no"/>
@@ -58,16 +58,19 @@
 	<result property="a_writer_id" column="a_writer_id"/>
 	<result property="reviewanswer_reg_date" column="reviewanswer_reg_date"/>
 
-</resultMap>
+</resultMap> -->
 
 	<!-- 게시판 전체 조회 -->
 	<!-- <select id="getListPage" resultMap="reviewBoardMap">
 		select *
 		  from review where book_isbn = #{book_isbn}
 	</select> -->
-	<select id="getListPage" resultType="int" parameterType="map">
-		select count(*) from review
+	<!-- 게시판 전체 조회 -->
+	<select id="getListPage" resultMap="reviewBoardMap">
+		select *
+		  from review 
 		where book_isbn = #{book_isbn}
+		order by review_no desc 
 	</select>
 	
 	<select id="getTotal" resultType="int">
@@ -94,7 +97,7 @@
 					where review_content like concat('%', #{keyword}, '%')
 				</if>
                  
-				<if test="type == 'content'">
+				<if test="AZ == 'content'">
 					where review_content like concat('%', #{keyword}, '%')
 				</if>
                  
