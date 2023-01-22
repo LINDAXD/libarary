@@ -137,6 +137,33 @@
                             </button>
                         </form>
                         
+                         <span>　</span>
+                        
+                        <!--============ 찜하기 추가 =========== -->
+                        <form id="like" onsubmit="return false;" method="post">
+                        
+                        	<sec:authorize access="isAuthenticated()">
+							<input type="hidden" class="user_email" name="user_email" 
+								value=<sec:authentication property="principal.dto.user_email"/>>
+							</sec:authorize>
+							
+							<sec:authorize access="isAnonymous()">
+							<input type="hidden" class="user_email" name="user_email">
+							</sec:authorize>
+							
+							<input type="hidden" name="book_title" value="${book.book_title }">
+							<input type="hidden" name="book_author" value="${book.book_author }">
+							<input type="hidden" class="book_isbn" name="book_isbn" value="${book.book_isbn }">
+							<input type="hidden" name="book_cover" value="${book.book_cover }">
+							<input type="hidden" name="book_pubDate" value="${book.book_pubDate }">
+							<input type="hidden" name="book_publisher" value="${book.book_publisher }">
+							<input type="hidden" name="amount" value="${cri.amount }">
+							<input type="hidden" name="page" value="${cri.page }">
+							<input type="hidden" name="type" value="${cri.type }">
+							<input type="hidden" name="keyword" value="${cri.keyword }">
+                            <button id="like_btn" class=" btn2">찜하기</button>
+                        </form>
+                        
                         
 
                     </div>
@@ -210,6 +237,48 @@
 		           		});
 						
 					}
+					
+				} 
+					
+			});
+			
+			/* ==========찜하기 추가========== */
+			$("#like_btn").click(function() {
+				
+				let email = $('.user_email').val(); 
+				let book_isbn = $('.book_isbn').val(); 
+				
+				if(email == "") {
+					alert("로그인 후 이용해주세요");
+					location.href="/member/login";
+				} else {
+					
+					if (confirm("도서를 찜하시겠습니까?")) {
+					
+						let data = {
+		           				book_isbn: book_isbn
+		           		};
+						
+						$.ajax({
+		           			type: "post",
+		           			url: "/search/likeChk",
+		           			data: data,
+		           			success: function(result) {
+		           				
+		           				if (result == "success") {
+		           					alert("내 찜리스트에 등록되었습니다.");
+		           					$("#like").attr("action", "/search/like?detail=not");
+		           					$("#like").attr("onsubmit", "return true;");
+		           					$("#like").submit();
+		       						
+		           				} else if (result == "alreadyLike"){
+		           					alert("이미 찜한 도서입니다.");
+		           				} 
+		           			}
+		           		});
+					
+					}
+					
 					
 				} 
 					

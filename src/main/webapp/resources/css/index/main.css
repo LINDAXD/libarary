@@ -1,3 +1,7 @@
+body{
+	/* background-color: ivory; */
+}
+
 /* ---- 공통으로 적용하는 것들 ----- */
 
 p, div, span, h1, h2, h3, ul, li {
@@ -8,11 +12,9 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* main01에서 각 part들이 차지하고 있는 공통 영역들(main01의 공통) */
 .library-info .inner > div {
-    width: 31.3%;
     border: 1px solid #d8d8d8;
     border-radius: 5px;
     position: relative;
-    overflow: hidden;
 }
 
 
@@ -28,6 +30,8 @@ p, div, span, h1, h2, h3, ul, li {
 /* =========== <main01-01> : 공지사항 part ============= */
 .library-info {
     position: relative;
+    margin-bottom:70px;
+    margin-top:120px;
     /* border: 1px solid steelblue; */
 }
 
@@ -49,8 +53,10 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* libray-notice : 공지사항 part */
 .libray-notice {
+	width:350px;
     float: left;
     padding: 9px 15px;
+    border:1px solid blue;
     /* background-color: #CCE1FF; */
 }
 
@@ -473,31 +479,29 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* ----- <main01-03 : main-banner> ----- */
 .library-info .inner .main-banner-box {
-    background-size: 100% 100%;
-    /* border: 1px solid red; */
+    /* background-size: 100% 100%; */
     height: 245px;
+    width:550px;
 }
 
 
 .main-banner-box {
+	border:1px solid blue;
+	width:500px;
     float: right;
+    overflow:hidden;
 }
 
-
 .main-banner-box .slidewrap {
-    max-width:100%;
-    height: 241px;
+    height: 245px;
     line-height:150%;
     margin:0 auto;
     /* border: 1px dashed dodgerblue; */
 }
-
-
 .slidewrap {
     position: relative;
 }
-
-
+.slidewrap img{height:245px;}
 .slidewrap button {
     position: absolute;
     z-index: 10;
@@ -506,7 +510,7 @@ p, div, span, h1, h2, h3, ul, li {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: pointer;
 }
 
@@ -555,9 +559,7 @@ p, div, span, h1, h2, h3, ul, li {
 /* ========= main04 영역(신착도서 / 대출베스트 시작) 전체를 감싸고 있는 부분 =========== */
 .book-slide-wrap {
     background: #fff;
-    /* border:3px solid #32BEBE; */
-    padding: 35px 0 35px 0;
-}
+	}
 
 
 /* Book-Box의 실질적인 작업공간 영역 */
@@ -566,7 +568,7 @@ p, div, span, h1, h2, h3, ul, li {
     max-width: 78.75em;
     width: 78.75em;
     margin: 0 auto;
-    border: 1px dashed fuchsia;
+    /* border: 1px dashed fuchsia; */
     height: auto;
 }
 
@@ -581,21 +583,18 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* Book-Box 테두리 */
 .book-slide-wrap .slide-inner {
-    border: 1px solid #d8d8d8;
-    border-radius: 5px;
-    overflow: hidden;
+/*     border: 1px solid #d8d8d8;
+    border-radius: 5px; */
+    /* overflow: hidden; */
 }
-
-
 
 /* Book-List 상자 전체 영역의 색깔을 설정 */
 .book-slide-top {
     background-color: rgba(254,254,254,0.5);
 }
 
-
 .book-tab {
-    background: #fee6d8;
+    /* background: #fee6d8; */
     font-size: 0;
     text-align: left;
     padding: 12px 0 12px 12px;}
@@ -603,9 +602,8 @@ p, div, span, h1, h2, h3, ul, li {
 
 .book-tab li:first-child {
     padding-left: 0;
-    margin-left: 0;
+    margin-left: 35px;
 }
-
 
 .book-tab li {
     display: inline-block;
@@ -614,14 +612,13 @@ p, div, span, h1, h2, h3, ul, li {
     position: relative;
 }
 
-
 /* book-tab에서 활성화(on)된 menu 설정*/
-.book-tab li.on a {
+/* .book-tab li.on a {
     background: #744130;
     color: #fff;
 }
 
-
+ */
 .book-tab li::before {
     content: '';
     display: block;
@@ -635,16 +632,32 @@ p, div, span, h1, h2, h3, ul, li {
 
 /* 탭 오른쪽에 위치한 대출BEST 색 변화 */
 .book-tab li a {
-    color: #94674E;
+    color:black;
     padding-left: 20px;
-    font-size: 14px;
+    font-size: 30px;
     font-weight: bold;
-    display: block;
-    padding: 5px 10px;
+    display: inline-block;
+    padding: 3px 10px;
     transition: background .2s, color .2s;
-    border-radius: 20px;
+    border-bottom:3px solid gray;
 }
-
+.book-tab1 span{
+	font-size:20px;
+	border-bottom:none;
+	margin-left:10px;
+}
+/* 책받침 느낌의 span태그 */
+.bookshelf{
+	width: 940px;
+	height:30px;
+	/* background-color:ivory; */
+	box-shadow: 10px 18px 7px -2px #eaeaea;
+	border-top:1px solid #eaeaea;
+	margin-bottom:30px;
+}
+.book_shadow{
+	box-shadow: 10px 18px 7px -2px gray;
+}
 
 /* bookList-Controller 관련한 설정(우선 보류) */
 /*.book-control {
@@ -670,7 +683,7 @@ p, div, span, h1, h2, h3, ul, li {
 /* bookList part */
 .book-slide {
     position: relative;
-    padding: 30px 40px;
+    padding: 30px 40px 0 40px;
 }
 
 

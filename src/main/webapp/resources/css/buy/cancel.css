@@ -1,0 +1,27 @@
+body{
+	background-color: #fff;
+	position:relative;
+	background:url(./kakao.jpg) no-repeat left 7px;
+	background-size: 45px 30px;
+}
+.pay{
+	font-weight:bold;
+	margin-left:40px;
+	font-size:16px;
+}
+.cancel{
+	margin-top:200px;
+	text-align:center;
+}
+
+#main{
+	background-color:#fee500;
+	border:1px solid #fee500;
+	border-radius:10px;
+	width: 300px;
+	height:40px;
+	position:absolute;
+	left:50%;
+	bottom:50px;
+	transform:translate(-50%,0);
+}

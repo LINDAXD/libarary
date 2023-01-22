@@ -127,5 +127,17 @@ public class HomeController {
 		return "/error/accessError2";
 
 	}
+	
+	@GetMapping("success")
+	public String success() {
+		
+		
+		
+		return "buy/success";
+	}
+	@GetMapping("cancel")
+	public String cancel() {
+		return "buy/cancel";
+	}
 
 }

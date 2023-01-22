@@ -25,15 +25,15 @@ ul{
 /* 전체 container */
 .container{
     margin: 0 auto;
-    width: 1900px;
+    width: 1300px;
     height: auto;
 }
 
 .sub_title{
-    width: 1900px;
+    width: 1300px;
     height: 140px;
     margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
+    /* background-image: url(/resources/imges/common/sub-visual.gif); */
     text-align: center;
 }
 
@@ -94,22 +94,26 @@ ul{
 .section::after {content: "";display: block; clear: both;}
 
 .lnb {
-    width:280px;
-    float:left;
+	width: 280px;
+	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
+
 
 .lnb h2{
     width: 220px !important;
     display: block;
-    background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px;
+    /* background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px; */
     height: 140px;
     margin-top: -140px;
     margin-bottom: 0px;
+    background-color:beige;
 }
 
 .lnb h2 b{
     display: block;
-    color: #fff;
+    color: black;
     font-size: 24px;
     line-height: 140px;
     margin: 0;
@@ -135,13 +139,13 @@ ul{
 
 /* 사이드 바 hover */
 .subMenu li a:hover{
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
 
 .lnb ul li.active > a {
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -156,7 +160,7 @@ ul{
 }
 
 .doc{
-    min-height:450px;
+    min-height:400px;
 }
 
 /* 게시판 전체 wrapper */
@@ -219,6 +223,12 @@ th, td{
     text-align: center;
 }
 
+.book_img img:hover{
+	opacity:0.3;
+	cursor:pointer;
+}
+
+.book_detail h2{font-size:20px;}
 
 
 /* 검색 */

@@ -1,8 +1,9 @@
 /* footer 영역 */
 footer { 
     height: auto;
-    width: 1900px;
-    background: #3d4252;
+    width: 100%;
+    background:#eaeaea;
+    min-width:100%;
     /* border: 5px solid red; */
 }
 
@@ -11,7 +12,7 @@ footer .footer_section {
     width: 1250px; 
     height: auto;
     /* border: 3px solid orange; */
-    color:#fff; 
+    color:black; 
 }
 
 
@@ -47,7 +48,7 @@ footer > div .info {
 footer > div .info a { 
     margin: 0 10px 0 0; 
     font-size: 13px; 
-    color:#fff;
+    color:black;
     /* border: 2px solid red; */
 }
 
@@ -67,7 +68,7 @@ footer > div .fsite_type1 {
     border-bottom: 1px 
     olid #7d828a; 
     font-size: 10px; 
-    color:#fff; 
+    color:black; 
     text-indent: 20px; 
     appearance:none; 
     -webkit-appearance:none; 

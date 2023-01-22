@@ -121,6 +121,7 @@
     </form>
 
     <script>
+        
         $(function () {
             let moveForm = $(".moveForm");
 
@@ -135,6 +136,8 @@
                     alert("추천도서가 등록되었습니다.")
                     $(this).attr("onsubmit", "return true");
                     $(this).submit();
+                    window.opener.location.reload();
+                    window.close();  
                 } else {
                     alert("등록이 취소되었습니다.")
                 }

@@ -49,4 +49,52 @@ public class BookServiceImpl implements BookService {
 	public int loan_check(String user_id, String book_isbn) {
 		return mapper.loan_check(user_id, book_isbn);
 	}
+
+	
+	
+	
+	//////////////////////////찜하기 추가 //////////////////////
+	// 찜하기 체크하기
+	@Override
+	public int like_check(String user_id, String book_isbn) {
+		return mapper.like_check(user_id, book_isbn);
+	}
+
+	// 찜 등록하기 
+	@Override
+	public void like(BookDTO dto) {
+		mapper.like(dto);
+	}
+	
+	// 찜한 도서 삭제
+	@Override
+	public void delete_like_book(String book_isbn) {
+		mapper.delete_like_book(book_isbn);
+	}
+	
+	//장바구니
+		@Override
+		public void cart(BookDTO dto) {
+			mapper.cart(dto);
+			
+		}
+
+		@Override
+		public int cart_check(String user_id, String book_isbn) {
+			// TODO Auto-generated method stub
+			return mapper.cart_check(user_id, book_isbn);
+		}
+
+		@Override
+		public int modifyCount(String book_title, int bookCount ) {
+			// TODO Auto-generated method stub
+			return mapper.modifyCount(book_title, bookCount);
+		}
+
+		@Override
+		public int deleteCart(int cart_id) {
+			
+			return mapper.deleteCart(cart_id);
+		}
+		
 }

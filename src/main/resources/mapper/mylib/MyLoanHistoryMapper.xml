@@ -22,6 +22,55 @@
 			  limit #{cri.skip}, #{cri.amount}
 		</select>
 		
+		
+	    <!--=========== 찜하기 추기 =================-->
+	    <!-- 찜한 도서 건 수 -->
+		<select id="get_total_like" resultType="int">
+			select count(*) 
+			  from like_history 
+			 where user_id = #{user_id} 
+		</select>
+		
+		<!-- 찜한 내역 페이징 --> 
+		<select id="like_history" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from like_history
+			 where user_id = #{user_id} 
+			  order by like_no desc
+			  limit #{cri.skip}, #{cri.amount}
+		</select>
+		
+		
+		<!-- 	장바구니 -->
+		<select id="get_total_cart" resultType="int">
+			select count(*) 
+			  from cart 
+			 where user_id = #{user_id} 
+		</select>
+		
+		<select id="get_total_count" resultType="int">
+			select sum(bookCount) from cart
+		</select>
+		
+		<select id="get_total_pay" resultType="int">
+			select bookCount * priceStandard from cart 
+		</select>
+		
+		<select id="get_total_final" resultType="int">
+			select sum(bookCount * priceStandard) from cart
+		</select>
+		
+		<!-- 장바구니 페이징 --> 
+		<select id="cart_history" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from cart
+			 where user_id = #{user_id} 
+			  order by cart_id desc
+			  limit #{cri.skip}, #{cri.amount}
+		</select>
+		
+		
+ 		
 		<sql id="criteria">
 	        <if test="start_date != null">
 			  	<if test="end_date != null">
@@ -30,5 +79,5 @@
 				</if>
 			</if>
 	    </sql>
- 		
+	    
 	</mapper>

@@ -1,0 +1,61 @@
+#join_container{
+	position:relative;
+}
+
+input {
+	display: inline-block;
+	height: 30px;
+}
+
+.point {
+	color: red;
+	padding-right: 5px;
+}
+
+.tit {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+#post {
+	margin-top: 5px; width : 130px;
+	height: 30px;
+	background-color: #36a3f7;
+	width: 130px;
+}
+
+#normal, #overseas, #convenience {
+	display: bliock;
+	border: 1px solid red;
+}
+
+.msg {
+	width: 500px;
+}
+
+.shipping > .tit {
+	display: inline-blick;
+	height: 40px;
+	line-height : 10px;
+
+
+}
+
+#agree{
+	display:block;
+}
+
+#apibtn{
+	width:150px;
+	height:30px;
+	background-color:#f1b55c;
+	border:#f1b55c 1px solid;
+	border-radius:5px;
+	margin-top: 30px;
+	position:absolute;
+	left:50%;
+	transform:translate(-50%,0);
+}

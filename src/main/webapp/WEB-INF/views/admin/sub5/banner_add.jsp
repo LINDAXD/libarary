@@ -61,6 +61,7 @@
 					$("form").attr("onsubmit", "return true;");
 					$("form").attr("action", "/admin/banner-add");
 					$("form").submit();
+					window.opener.location.reload();
 				}
             });
 

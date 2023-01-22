@@ -132,7 +132,7 @@
             </div>
             
         </div>
-        <div class="pageInfo" style="text-align: center; width:970px; margin-left: 600px;">
+        <div class="pageInfo" style="text-align: center; width:970px; margin: 0 auto;">
 								
 	         <c:if test="${pageMaker.prev }">
 	             <a class="not" href="${pageMaker.startPage - 1}">이전</a>

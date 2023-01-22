@@ -34,15 +34,15 @@
     <div>
         <ul class="header_menu">
             <li>
-                <div style=" width: 250px; height: 90px; margin-right: 250px;">
-                	<a href="/"><img src="/resources/imges/common/header_logo.png"></a>
+                <div style=" width: 160px; height: 70px; margin-right: 250px;">
+                	<a href="/"><img src="/resources/imges/index/ezen-logo-black.png"></a>
                 </div>
             </li>
-            <li class="header_menu1"><span><a href="/search/book">자료검색</a></span></li>
+            <li class="header_menu1"><span><a href="/search/book">도서검색</a></span></li>
             <li class="header_menu2"><span><a href="/info/signup">이용안내</a></span></li>
             <li class="header_menu3"><span><a href="/board/noticeList">열린공간</a></span></li>
-            <li class="header_menu4"><span><a href="/intro/greeting">도서관소개</a></span></li>
-            <li class="header_menu5"><span><a href="/mylib/loan-history">나의도서관</a></span></li>
+            <li class="header_menu4"><span><a href="/intro/greeting">회사소개</a></span></li>
+            <li class="header_menu5"><span><a href="/mylib/loan-history">마이페이지</a></span></li>
         </ul>
     </div>
 </div>

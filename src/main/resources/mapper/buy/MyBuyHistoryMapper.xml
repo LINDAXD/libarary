@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+	<mapper namespace="com.library.mapper.buy.MyBuyHistoryMapper">
+		
+		
+
+	    <!-- 구매한 도서 건 수 -->
+		<select id="get_total_buy" resultType="int">
+			select count(*) 
+			  from buy_history 
+			 where user_id = #{user_id} 
+		</select>  
+		<!-- 구매 내역 페이징 및 검색 시 --> 
+		<select id="buy_history" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from buy_history
+			 where user_id = #{user_id}
+			  order by buy_date desc
+			  limit #{cri.skip}, #{cri.amount}
+		</select>
+
+	</mapper>

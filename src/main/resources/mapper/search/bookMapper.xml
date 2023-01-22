@@ -25,7 +25,6 @@
 					, book_pubDate, book_publisher, book_author
 		 from loan_history 
 		where loan_date between concat(#{year}, '-', #{month}, '-01') and concat(#{year}, '-', #{month}, '-31' )
-			  and return_status = true 
 		group by book_isbn 
 		order by total_count desc 
 		limit 10;
@@ -53,5 +52,60 @@
 		 where user_id = #{user_id} and book_isbn = #{book_isbn} and return_status = false 
 	</select>
 	
+	
+	<!--=========================== 찜하기 추가 =========================  -->
+	<!-- 이미 찜한 도서인지 체크 -->
+	<select id="like_check" resultType="int">
+		select count(*)
+		  from like_history
+		 where user_id = #{user_id} and book_isbn = #{book_isbn} 
+	</select>
+	
+	<!-- 찜하기 -->
+	<insert id="like">
+		insert into like_history(user_id, user_email, book_title, book_author, book_isbn, 
+		book_cover, book_pubDate, book_publisher)
+		values
+		(#{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
+		#{book_pubDate}, #{book_publisher})
+	</insert>
+	
+	<!-- 찜한 도서 삭제하기 -->
+	<delete id="delete_like_book">
+		delete
+		  from like_history
+		 where book_isbn = #{book_isbn} 
+	</delete>
+	
+	
+	
+	<!-- 장바구니 -->
+	<insert id="cart">
+		insert into cart(user_id, user_email, book_title, book_author, book_isbn, 
+		book_cover, book_pubDate, book_publisher, priceStandard ,bookCount)
+		values
+		( #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
+		#{book_pubDate}, #{book_publisher}, #{priceStandard}, 1)
+	</insert>
+	
+	
+	
+	<select id="cart_check" resultType="int">
+	select count(*)
+		  from cart
+		 where user_id = #{user_id} and book_isbn = #{book_isbn} 
+	</select>
+	
+	<update id="modifyCount">
+	
+		update cart set bookCount = #{bookCount} where book_title = #{book_title}
+	
+	</update>
+	
+	<delete id="deleteCart">
+	
+		delete from cart where cart_id = #{cart_id}
+	
+	</delete>
 	
 </mapper>  

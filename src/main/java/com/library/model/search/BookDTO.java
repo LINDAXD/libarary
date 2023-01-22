@@ -42,6 +42,9 @@ public class BookDTO {
 
 	// 대출 일
 	private String loan_date;
+	
+	// 구매 일
+    private String buy_date;
 
 	// 반납 일
 	private String return_date;
@@ -57,4 +60,14 @@ public class BookDTO {
 	
 	// 연체일
 	private int overdue_date;
+	
+	//장바구니 
+	private int cart_id;
+	
+	private int bookCount;
+	
+	// 구매 가격
+	private int resultpriceStandard;
+	private int packagingprice;
+	private int book_price;
 }

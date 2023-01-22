@@ -33,7 +33,7 @@ ul{
     width: 1900px;
     height: 140px;
     margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
+    /* background-image: url(/resources/imges/common/sub-visual.gif); */
     text-align: center;
 }
 
