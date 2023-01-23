@@ -240,6 +240,8 @@
 								<textarea class="review_input" style="width: 800px" rows="10"
 									cols="30" id="review_input" name="review_content"
 									placeholder="후기를 작성해주세요." cols="140" rows="10"></textarea>
+									
+									
 							</form>
 						</div>
 
@@ -256,14 +258,45 @@
 
 
 								</li>
+								<form action="/review/reviewBoardUpdate" method="post"
+								id="review_form" onsubmit="return fn_review_write();">
 								<button type="button" class="reviewBoardUpdate"
-									data-rno="${repList.rno}">수정하기</button>
-								<button type="button" class="reviewBoardDelete"
-									data-rno="${repList.rno}">삭제하기</button>
+									data-rno="${repList.rno}">수정하기</button></form>
+							<!-- <form action="/review/reviewBoardDelete" method="post"
+								id="delete_form" onsubmit="return false">
+								<input type="hidden" class="book_isbn" name="book_isbn"
+									value="${book.book_isbn }">
+									<input type="submit"
+									class="delete_btn" style="cursor: pointer" value="삭제하기">
+							<input type="hidden" name="amount" value="${cri.amount }">
+								<input type="hidden" name="page" value="${cri.page }">
+								<input type="hidden" name="type" value="${cri.type }">
+								<input type="hidden" name="keyword" value="${cri.keyword }">
+								<input type="hidden" name="amount" value="${repList.rno}">
+								<input type="hidden" name="review_no" value="${list.review_no}">
+								<input type="hidden" name="review_id" value="${list.writer_id}">
+								<input type="hidden" name="review_content" value="${list.review_content }">
+							</form> -->
+								
+								<button type="button" class="delete_btn" style="cursor: pointer" onclick="reviewDelete(${list.review_no},${book.book_isbn })">삭제하기</button>
+							
 							</c:forEach>
 
 						</ol>
 					</c:if>
+					
+					
+							<form action="/review/reviewBoardDelete" method="post" id="delete_form">
+								<input type="hidden" class="book_isbn" name="book_isbn"	id="book_isbn" value="">
+								
+							<input type="hidden" name="amount" value="${cri.amount }">
+								<input type="hidden" name="page" value="${cri.page }">
+								<input type="hidden" name="type" value="${cri.type }">
+								<input type="hidden" name="keyword" value="${cri.keyword }">
+								<input type="hidden" name="amount" value="${repList.rno}">
+								<input type="hidden" name="review_no" id="review_no" value="${list.review_no}">
+							</form>
+
 
 					<input type="hidden" id="b_code" name="b_code"
 						value="${result.code }" />
@@ -439,6 +472,21 @@ $(function() {
 /*
  * 댓글 등록하기(Ajax)
  */
+ 
+
+ function reviewDelete(review_no,book_isbn){
+	 $('#review_no').val(review_no);
+	 $('#book_isbn').val(book_isbn);
+
+
+		if(confirm("삭제하시겠습니까?")){
+			alert("게시물이 삭제되었습니다.");
+		
+			$("#delete_form").submit();
+		}
+
+}
+ 
 function fn_review_write(){
 	var review_input = $('#review_input').val();
 	if(review_input){
@@ -562,6 +610,19 @@ $(function() {
 	
 	
 });
+
+
+
+$(function() {
+/* 	
+	$(".sub3").addClass("active");
+	
+	 */
+/* 	var moveForm = $(".moveForm"); */
+
+			
+});
+
 </script>
 </body>
 </html>

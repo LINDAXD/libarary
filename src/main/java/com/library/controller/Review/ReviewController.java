@@ -180,13 +180,13 @@ public class ReviewController {
 
 	/* 게시물 삭제 */
 	@PostMapping("/reviewBoardDelete")
-	public String reviewBoardDelete(Criteria cri, @RequestParam("review_no") String ureview_no, Principal principal) {
+	public String reviewBoardDelete(Criteria cri, @RequestParam("review_no") String ureview_no, @RequestParam("book_isbn")Long book_isbn, Principal principal) {
 
 		String keyword;
 		Long review_no = Long.parseLong(ureview_no);
-		ReviewBoardDTO dto = eBoardService.reviewContent(review_no);
+		String writer_id = eBoardService.id_duplicate(ureview_no);
 
-		String writer_id = dto.getWriter_id(); // 작성자 ID
+		//String writer_id = dto.getWriter_id(); // 작성자 ID
 		String login_id = principal.getName();// 로그인한 ID
 		int check = eBoardService.check_admin(login_id); // 관리자 계정 확인
 
@@ -198,8 +198,8 @@ public class ReviewController {
 
 				eBoardService.reviewBoardDelete(review_no);
 				eBoardService.reset();
-				return "redirect:/review/reviewBoardList?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
-						+ keyword + "&type=" + cri.getType();
+				return "redirect:/search/book-detail?amount=" + cri.getAmount() + "&page=" + cri.getPage() + "&keyword="
+						+ keyword + "&type=" + cri.getType()+ "&book_isbn=" + book_isbn;
 			} catch (UnsupportedEncodingException e) {
 				return "redirect:/review/reviewBoardList";
 			}
