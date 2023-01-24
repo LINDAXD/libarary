@@ -223,10 +223,15 @@
                     					<!-- 추가 -->
 					<div class="container">
 						<br> <br>
+						<sec:authorize access="isAuthenticated()">
 						<div>
 							<div>
 								<span><strong>Review</strong></span> <span id="cCnt"></span>
 							</div>
+
+	<!-- 로그인 시 -->
+		
+	
 
 							<form action="/review/reviewBoardInsert" method="post"
 								id="review_form" onsubmit="return fn_review_write();">
@@ -243,8 +248,9 @@
 									
 									
 							</form>
+							
 						</div>
-
+</sec:authorize>
 					</div>
 					<div>
 						<span><strong>Review 리스트</strong></span> <span id="cCnt"></span>
@@ -258,28 +264,15 @@
 
 
 								</li>
+								
 								<form action="/review/reviewBoardUpdate" method="post"
 								id="review_form" onsubmit="return fn_review_write();">
+								<sec:authorize access="isAuthenticated()">
 								<button type="button" class="reviewBoardUpdate"
 									data-rno="${repList.rno}">수정하기</button></form>
-							<!-- <form action="/review/reviewBoardDelete" method="post"
-								id="delete_form" onsubmit="return false">
-								<input type="hidden" class="book_isbn" name="book_isbn"
-									value="${book.book_isbn }">
-									<input type="submit"
-									class="delete_btn" style="cursor: pointer" value="삭제하기">
-							<input type="hidden" name="amount" value="${cri.amount }">
-								<input type="hidden" name="page" value="${cri.page }">
-								<input type="hidden" name="type" value="${cri.type }">
-								<input type="hidden" name="keyword" value="${cri.keyword }">
-								<input type="hidden" name="amount" value="${repList.rno}">
-								<input type="hidden" name="review_no" value="${list.review_no}">
-								<input type="hidden" name="review_id" value="${list.writer_id}">
-								<input type="hidden" name="review_content" value="${list.review_content }">
-							</form> -->
 								
 								<button type="button" class="delete_btn" style="cursor: pointer" onclick="reviewDelete(${list.review_no},${book.book_isbn })">삭제하기</button>
-							
+							</sec:authorize>
 							</c:forEach>
 
 						</ol>
@@ -465,7 +458,6 @@ $(function() {
 
 
 </script>
-
 
 
 <script type="text/javascript">
