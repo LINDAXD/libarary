@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>라온도서관 > 열린공간 > 묻고답하기</title>
+<title>이젠북컴퍼니 > 열린공간 > 묻고답하기</title>
 	<link rel="stylesheet" href="/resources/css/board/sub3/qna_edit_page.css">
 	<link rel="stylesheet" href="/resources/css/header.css">
 	<link rel="stylesheet" href="/resources/css/footer.css">

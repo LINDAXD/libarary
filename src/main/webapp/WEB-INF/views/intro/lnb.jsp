@@ -8,9 +8,6 @@
         <li class="sub1">
             <a href="/intro/greeting">인사말</a>
         </li>
-        <li class="sub2">
-            <a href="/intro/history">연혁</a>
-        </li>
         <li class="sub3">
             <a href="/intro/road">찾아오시는길</a>
         </li>

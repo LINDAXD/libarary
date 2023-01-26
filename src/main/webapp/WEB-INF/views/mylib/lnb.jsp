@@ -35,31 +35,6 @@
            
         </li>
         
-        <li class="sub3">
-            <a href="/mylib/reservationRoomPage">좌석예약/조회 　 　<b>+</b></a>
-            
-            <ul class="sub">
-               <li class="submenu8">
-                   <a href="/mylib/reservationRoomPage">열람실이용안내</a>
-               </li>
-               
-               <li class="submenu9">
-                   <a href="/mylib/myReservationInfo">나의예약현황</a>
-               </li>
-
-               <li class="submenu10">
-                   <a href="/mylib/readingRoom">제1열람실</a>
-               </li>
-               
-               <li class="submenu11">
-                   <a href="/mylib/readingRoom2">제2열람실</a>
-               </li>
-               
-               <li class="submenu12">
-                   <a href="/mylib/notebookRoom">노트북실</a>
-               </li>
-           </ul>
-        </li>
         
         <li class="sub5">
             <a href="/mylib/mypage">개인정보　　　　　<b>+</b></a>

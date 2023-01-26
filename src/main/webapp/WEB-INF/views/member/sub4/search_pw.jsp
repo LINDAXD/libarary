@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 회원관련 > 비밀번호찾기</title>
+<title>이젠북컴퍼니 > 회원관련 > 비밀번호찾기</title>
 <link rel="stylesheet" href="/resources/css/member/search_pw.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">

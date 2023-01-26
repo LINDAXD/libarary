@@ -66,23 +66,23 @@
 }
 
 .header_submenu2{
-    width: 500px; 
-    margin-left: 590px;
+    width: 350px; 
+    margin-left: 670px;
 }
 
 .header_submenu3{
-    width: 700px; 
-    margin-left: 650px; 
+    width: 450px; 
+    margin-left: 780px; 
 }
 
 .header_submenu4{
-    width: 400px; 
-    margin-left: 990px;
+    width: 300px; 
+    margin-left: 1050px;
 }
 
 .header_submenu5{
-    width: 600px; 
-    margin-left: 900px; 
+    width: 470px; 
+    margin-left: 1000px; 
 }
 
 .header_submenu ul li a:hover{

@@ -186,7 +186,7 @@ public class AdminController {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				final MimeMessageHelper mailHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-				mailHelper.setFrom(new InternetAddress(from, "라온도서관", "UTF-8"));
+				mailHelper.setFrom(new InternetAddress(from, "이젠북컴퍼니", "UTF-8"));
 				mailHelper.setTo(to);
 				mailHelper.setSubject(title);
 				mailHelper.setText(content, true);

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 나의도서관 > 좌석예약/조회 > 제2열람실</title>
+<title>이젠북컴퍼니 > 나의도서관 > 좌석예약/조회 > 제2열람실</title>
 <link rel="stylesheet" href="/resources/css/mylib/sub3/readingRoom2_sb_page.css">
 <link rel="stylesheet" href="/resources/css/mylib/sub3/readingRoom2.css">
 <link rel="stylesheet" href="/resources/css/header.css">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 나의도서관 > 개인정보 > 비밀번호변경</title>
+<title>이젠북컴퍼니 > 나의도서관 > 개인정보 > 비밀번호변경</title>
 <link rel="stylesheet" href="/resources/css/mylib/sub5/modify.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">

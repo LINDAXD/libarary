@@ -25,16 +25,17 @@ ul{
 /* 전체 container */
 .container{
     margin: 0 auto;
-    width: 1900px;
+    width: 1300px;
     height: auto;
 }
 
-.sub_title{
-    width: 1900px;
-    height: 140px;
-    margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
-    text-align: center;
+.sub_title {
+	width: 1300px;
+	height: 140px;
+	margin: 0 auto;
+	/* background-image: url(/resources/imges/common/sub-visual.gif); */
+	text-align: center;
+	margin-left:-50px;
 }
 
 .doc-info{
@@ -94,27 +95,29 @@ ul{
 .section::after {content: "";display: block; clear: both;}
 
 .lnb {
-    width:280px;
-    float:left;
+	width: 280px;
+	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
 
-.lnb h2{
-    width: 220px !important;
-    display: block;
-    background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px;
-    height: 140px;
-    margin-top: -140px;
-    margin-bottom: 0px;
+.lnb h2 {
+	width: 220px !important;
+	display: block;
+	height: 140px;
+	margin-top: -140px;
+	margin-bottom: 0px;
+	background-color:beige;
 }
 
-.lnb h2 b{
-    display: block;
-    color: #fff;
-    font-size: 24px;
-    line-height: 140px;
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
+.lnb h2 b {
+	display: block;
+	color: black;
+	font-size: 24px;
+	line-height: 140px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
 }
 
 .subMenu li{
@@ -135,13 +138,13 @@ ul{
 
 /* 사이드 바 hover */
 .subMenu li a:hover{
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
 
 .lnb ul li.active > a {
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -232,26 +235,29 @@ input:focus{
 
 /* 버튼속성 */
 .btn {
-    width: 60px;
-    height: 35px;
-    background-color: #266ac4;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
+	width: 60px;
+	height: 35px;
+	background-color: #eaeaea;
+	border: none;
+	border-radius: 5px;
+	color: black;
+	font-size: 15px;
+	cursor: pointer;
 }
 .btn:focus, .btn:active{
     border: none; box-shadow: none;
 }
 
-.btn:hover{
-    background-color: #215aa3;
+.btn:hover {
+	background-color: #333333;
+	color:white;
+}
+.modify_btn{
+	margin-left:300px;
+	width:300px;
+	margin-top: 30px;
 }
 
-.member_modify_wrap {
-	float: right;
-}
 
 .member_delete_wrap {
 	margin-right: 10px;

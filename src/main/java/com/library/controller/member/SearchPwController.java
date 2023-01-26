@@ -74,8 +74,8 @@ public class SearchPwController {
 
 		String from = "library.raon@gmail.com";
 		String to = member.getUser_email();
-		String title = "라온 도서관 : 비밀번호 초기화";
-		String content = "라온 도서관을 이용해주셔서 감사합니다." + "<br><br>" + "초기화 된 비밀번호는 <b>" + newPw + "</b> 입니다." + "<br><br>"
+		String title = "이젠 북컴퍼니 : 비밀번호 초기화";
+		String content = "이젠 북컴퍼니를 이용해주셔서 감사합니다." + "<br><br>" + "초기화 된 비밀번호는 <b>" + newPw + "</b> 입니다." + "<br><br>"
 				+ "로그인 후 비밀번호를 변경하여주세요.";
 
 		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -84,7 +84,7 @@ public class SearchPwController {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				final MimeMessageHelper mailHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-				mailHelper.setFrom(new InternetAddress(from, "라온도서관", "UTF-8"));
+				mailHelper.setFrom(new InternetAddress(from, "이젠북컴퍼니", "UTF-8"));
 				mailHelper.setTo(to);
 				mailHelper.setSubject(title);
 				mailHelper.setText(content, true);

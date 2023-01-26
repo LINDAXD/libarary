@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 도서관소개 > 인사말</title>
+<title>이젠북컴퍼니 > 회사소개 > 인사말</title>
 <link rel="stylesheet" href="/resources/css/intro/greeting.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/intro/greeting">도서관소개</a>
+                            <a href="/intro/greeting">회사소개</a>
                         </li>
                         <li>
                             <a href="/intro/greeting">인사말</a>
@@ -55,19 +55,16 @@
                         <div class="wrapper-bbs">
                             <div class="int-img">
                                 <div class="int-img-box">
-                                    <h2>라온도서관 홈페이지 방문을 환영합니다.</h2>
-                                    <p>- 4차 산업혁명의 시대, 책과 평생학습은 이 시대를 살아가는데 필수입니다. -</p>
+                                    <h2>이젠북컴퍼니 홈페이지 방문을 환영합니다.</h2>
+                                    <p> 책 없는 방은 영혼 없는 육체와 같다 <br> - 키케로 -</p>
                                 </div>
                             </div>  
                             <div class="greeting">
 	                            <br>
-	                            <p>안녕하십니까? 라온도서관에 오신 것을 진심으로 환영합니다.</p><br>
-	                            <p>라온도서관은 영남인재교육원에서 국비교육을 수강하면서 함께 팀을 이루어 팀프로젝트로 만든 도서관 홈페이지입니다.</p><br>
-	                            <p>앞으로 더욱 더 좋은 개발을 하도록 노력하겠습니다.</p><br>
+	                            <p>이젠북컴퍼니에 오신 것을 진심으로 환영합니다.</p><br>
+	                            <p>이젠북컴퍼니는 국내 최초로 도서 대여 시스템과 구매 시스템가 모두 가능한 혁신적인 도서 쇼핑몰입니다.</p><br>
+	                            <p>앞으로도 양질의 도서 문화를 제공할 수 있도록 노력하겠습니다.</p><br>
 	                            <p>감사합니다.</p><br>
-	                            
-	                            <p>조장 : 박준모</p>
-	                            <p>조원 : 김혜인, 신혜리, 장준화, 천종부</p>
                             </div>
                         </div>
                     </div>

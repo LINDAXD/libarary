@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 나의도서관 > 도서관련 > 구매내역조회</title>
+<title>이젠북컴퍼니 > 마이페이지 > 도서관련 > 구매내역조회</title>
 <link rel="stylesheet" href="/resources/css/mylib/sub1/loan_history.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
@@ -34,7 +34,7 @@
                             </a>
                         </li> 
                         <li>
-                            <a href="/mylib/loan-history">나의도서관</a>
+                            <a href="/mylib/loan-history">마이페이지</a>
                         </li>
                         <li>
                             <a href="/mylib/loan-history">도서관련</a>

@@ -160,7 +160,7 @@ public class RecommendController {
 	}
 
 	// 추천도서 등록
-	@PostMapping("regist")
+	@PostMapping("/regist")
 	public String regist(BookDTO book, Principal principal) {
 		System.out.println("regist 진입");
 		

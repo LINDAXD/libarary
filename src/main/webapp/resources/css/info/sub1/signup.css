@@ -38,19 +38,19 @@
 .roomicon
 .inner.icowrap .ico {
     position: absolute;
-    left: 10px;
+    left: 5px;
     top: -23px;
     display: inline-block;
-    width: 170px;
+    width: 150px;
     min-height: 170px;
-    background:url(https://library.daegu.go.kr/resources/common/img/room_ico.gif)
+    background:url(/resources/imges/info/join.png) no-repeat center;
+    background-size:70px 70px;
 }
 
 
 .roomicon .inner strong {
     display: block;
-    margin: 0;
-    margin-bottom: 0px;
+    margin-left: -70px;
     margin-bottom: 5px;
     color: #121212;
     font-size: 28px;
@@ -61,6 +61,7 @@
 
 .roomicon .inner p {
     line-height: 160%;
+    margin-left: -70px;
 }
 
 
@@ -105,7 +106,8 @@
 .doc-body h3 {
     padding-left: 30px;
     margin: 80px 0 20px 0;
-    background: url('https://library.daegu.go.kr/resources/common/img/h3.gif') no-repeat 0 7px;
+    background: url(/resources/imges/info/check.png) no-repeat 0 7px;
+    background-size:25px 25px;
     font-size: 23px;
     font-weight: 600;
     color: #222;

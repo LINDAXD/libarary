@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 나의도서관 > 개인정보 > 마이페이지</title>
+<title>이젠북컴퍼니 > 나의도서관 > 개인정보 > 마이페이지</title>
 <link rel="stylesheet" href="/resources/css/mylib/sub5/mypage.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
@@ -198,7 +198,7 @@
 
                     <div class="member_modify_wrap">
                         <form action="/mylib/modify" method="get">
-                            <button class="btn">수정</button>
+                            <button class="btn modify_btn">수정</button>
                         </form>
                     </div>
 

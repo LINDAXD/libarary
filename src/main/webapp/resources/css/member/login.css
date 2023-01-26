@@ -25,16 +25,17 @@ ul{
 /* 전체 container */
 .container{
     margin: 0 auto;
-    width: 1900px;
+    width: 1300px;
     height: auto;
 }
 
-.sub_title{
-    width: 1900px;
-    height: 140px;
-    margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
-    text-align: center;
+.sub_title {
+	width: 1200px;
+	height: 140px;
+	margin: 0 auto;
+	/* background-image: url(/resources/imges/common/sub-visual.gif); */
+	text-align: center;
+	margin-left:-70px;
 }
 
 .doc-info{
@@ -85,7 +86,7 @@ ul{
 }
 
 .section{
-    width: 1260px;
+    width: 1250px;
     height: auto;
     margin: 0 auto;
     position: relative;
@@ -94,27 +95,29 @@ ul{
 .section::after {content: "";display: block; clear: both;}
 
 .lnb {
-    width:280px;
-    float:left;
+	width: 280px;
+	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
 
-.lnb h2{
-    width: 220px !important;
-    display: block;
-    background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px;
-    height: 140px;
-    margin-top: -140px;
-    margin-bottom: 0px;
+.lnb h2 {
+	width: 220px !important;
+	display: block;
+	height: 140px;
+	margin-top: -140px;
+	margin-bottom: 0px;
+	background-color:beige;
 }
 
-.lnb h2 b{
-    display: block;
-    color: #fff;
-    font-size: 24px;
-    line-height: 140px;
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
+.lnb h2 b {
+	display: block;
+	color: black;
+	font-size: 24px;
+	line-height: 140px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
 }
 
 .subMenu li{
@@ -135,13 +138,13 @@ ul{
 
 /* 사이드 바 hover */
 .subMenu li a:hover{
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
 
 .lnb ul li.active > a {
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -161,12 +164,21 @@ ul{
 
 /* 게시판 전체 wrapper */
 .wrapper-bbs {
+	width:200px;
+	height:300px;
     font-size: 13px;
-    background: #f7f7f7;
+    /* background: #f7f7f7; */
     padding-top: 40px;
     padding-left: 100px;
     padding-bottom: 20px;
+    /* border:1px solid black; */
 }
+
+/* .login_wrap{
+	border:1px solid red;
+	width:200px;
+	height:300px;
+} */
 
 /* inline => 총 게시물 부분 : 왼쪽 정렬 */
 .inline {
@@ -195,23 +207,20 @@ input{
 }
 
 
-
 .loginForm{
     position: absolute;
-    top: 150px;
-    right: 100px;
+    top: 50px;
+    right: 22%;
     width: 490px;
 }
 .login_btn{
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 115px; 
-    height: 90px;
-    background-color: #266ac4;
+	margin-top:30px;
+    width: 370px;
+    height: 42px;
+    background-color: #eaeaea;
     border: none;
     border-radius: 5px;
-    color: #fff;
+    color: black;
     font-size: 18px;
     cursor: pointer;
 }
@@ -220,35 +229,45 @@ input{
 
 }
 .login_btn:hover{
-    background-color: #215aa3;
+    background-color: #eaeaea;
+	opacity:0.7;
 }
 .login_menu{
     width: 480px;
     position: absolute;
     top: 270px;
-    right: 100px;
-    
+    right: 25%;
+    text-align: center;
 }
 
 .login_menu a {
     font-style: normal;
     font-size: 15px;
     cursor: pointer;
+    font-weight:bold;
 }
-
+.login_menu span:nth-child(1),.login_menu span:nth-child(2){
+	border-right:1px solid black;
+}
+.login_menu span:nth-child(2),.login_menu span:nth-child(3){
+	padding-left:20px;
+}
+.login_menu span:nth-child(1),.login_menu span:nth-child(2){
+	padding-right:10px;
+}
 .login_menu a:hover{
-    color: #2b74c0;
+    text-decoration:underline;
 }
 
 .tit {
     position: absolute;
     top: 320px;
-    right: 100px;
+    right: 25%;
     width: 490px;
 }
 
 .tit span{
     color: #3f70bc;
     font-weight: bold;
-    
+    padding-left:100px;
 }

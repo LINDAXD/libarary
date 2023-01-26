@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 회원관련 > 회원가입</title>
+<title>이젠북컴퍼니 > 회원관련 > 회원가입</title>
 <link rel="stylesheet" href="/resources/css/member/signup.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">

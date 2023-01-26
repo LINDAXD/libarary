@@ -5,7 +5,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>라온도서관 > 나의도서관 > 좌석예약/조회 > 제1열람실</title>
+	<title>이젠북컴퍼니 > 나의도서관 > 좌석예약/조회 > 제1열람실</title>
 	<link rel="stylesheet" href="/resources/css/mylib/sub3/readingRoom1_sb_page.css">
 	<link rel="stylesheet" href="/resources/css/mylib/sub3/readingRoom1.css">
 	<link rel="stylesheet" href="/resources/css/header.css">

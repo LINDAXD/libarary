@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
-	<title>라온도서관 > 자료검색 > 추천도서</title>
+	<title>이젠북컴퍼니 > 자료검색 > 추천도서</title>
 </head>
 <link rel="stylesheet" href="/resources/css/search/book_detail.css">
 <link rel="stylesheet" href="/resources/css/header.css">

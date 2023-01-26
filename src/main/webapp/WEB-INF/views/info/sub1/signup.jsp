@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>라온도서관 > 이용안내 > 회원가입안내</title>
+	<title>이젠북컴퍼니 > 이용안내 > 회원가입안내</title>
 	<link rel="stylesheet" href="/resources/css/info/sub1/signup.css">
 	<link rel="stylesheet" href="/resources/css/info/sb_page.css">
 	<link rel="stylesheet" href="/resources/css/header.css">
@@ -57,10 +57,9 @@
                                             <span class="ico ico5"></span>
                                             <strong>회원가입 안내</strong>
                                             <p>
-                                                "라온도서관에 회원가입하셔서 도서관을 
-                                                편리하게 이용하시고 더불어 다양한 혜택을 누리세요." <br>회원 가입을 하시면
-                                                도서 대출 및 열람실을 이용할 수 있으며 희망 도서를 신청할 수 있으며
-                                                도서관을 쉽고 편리하게 이용할 수 있습니다.
+                                                이젠북컴퍼니의 회원이 되시면 <br>
+                                                도서 대출 및 구매, 희망 도서 신청 등 다양한 서비스를 
+                                                쉽고 편리하게 이용해보실 수 있습니다.
                                             </p>
                                             <!-- 회원가입 화면으로 연결 -->
                                             <p class="basic_btn">
@@ -103,37 +102,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3>구비서류</h3>
-                                        <div class="rsv-info"></div>
-                                        <div class="auto-scroll">
-                                            <table class="tbl-type01" summary="구비서류 안내표">
-                                                <caption>구비서류</caption>
-                                                <colgroup>
-                                                    <col width="22%"></col1>
-                                                    <col width="22%"></co12>
-                                                    <col width="*"></col13>
-                                                </colgroup>
-                                                <thead>
-                                                    <tr class="first">
-                                                        <th scope="col" class="first th1">구분</th>
-                                                        <th scope="col" class="first th1">세부내용</th> 
-                                                    </tr>
-                                                </thead>    
-                                                    <tr class="first">
-                                                        <th scope="col" class="first th1">발급 가능대상</th>
-                                                        <td class="left last td1" colspan="2">
-                                                            <ul class="con">
-                                                                <li>주민등록상 대구시민(경산시, 칠곡군도 여기에 해당)</li>
-                                                                <li>타지역 거주자 중 대구소재 학생 또는 직장인</li>
-                                                                <li>대구에 거주 중인 외국인 등록자</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                        
-                                                </tbody>
-                                            </table>
-                                        </div>
-
                                         <!-- 유의사항 -->
                                         <h3>유의사항</h3>
                                         <ul class="con">

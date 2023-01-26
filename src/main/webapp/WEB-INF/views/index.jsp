@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관</title>
+<title>이젠북컴퍼니</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/index/default.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/index/main_header.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/index/main.css">
@@ -129,7 +129,6 @@
                             <ul class="sub-menu sm02">
                                 <li>
                                     <a class="" href="/info/signup">회원가입 안내</a>
-                                    <a class="" href="/info/openingHours">이용시간 및 휴관일</a>
                                     <a class="" href="/info/loanBook">도서 대출 및 반납</a>
                                 </li>
                             </ul>
@@ -143,8 +142,6 @@
                                     <a class="" href="/board/noticeList">공지사항</a>
                                     <a class="" href="/board/faq">자주묻는질문</a>
                                     <a class="" href="/board/qnaBoardList">묻고답하기</a>
-                                    <a class="" href="/board/articleList">분실물찾기</a>
-                                    <a class="" href="/board/calendar">도서관일정</a>
                                 </li>
                             </ul>
                         </li>
@@ -155,7 +152,6 @@
                             <ul class="sub-menu sm04">
                                 <li>
                                     <a class="" href="/intro/greeting">인사말</a>
-                                    <a class="" href="/intro/history">연혁</a>
                                     <a class="" href="/intro/road">찾아오시는길</a>
                                 </li>
                             </ul>
@@ -168,8 +164,7 @@
                                 <li>
                                     <a class="" href="/mylib/loan-history">도서관련</a>
                                     <a class="" href="/mylib/hope">희망도서신청/조회</a>
-                                    <a class="" href="/mylib/reservationRoomPage">좌석예약/조회</a>
-                                    <a class="" href="/mylib/mypage">개인정보</a>
+                                    <a class="" href="/mylib/mypage">마이페이지</a>
                                 </li>
                             </ul>
                         </li>

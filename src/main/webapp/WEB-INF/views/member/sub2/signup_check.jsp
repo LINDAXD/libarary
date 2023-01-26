@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 회원관련 > 회원가입</title>
+<title>이젠북컴퍼니 > 회원관련 > 회원가입</title>
 <link rel="stylesheet" href="/resources/css/member/signup_check.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
@@ -49,13 +49,13 @@
 
                 <!-- 본문 -->
                 <div class="content" style="/* border: 1px solid brown; */">
-                	<h2>라온 도서관 회원 이용약관</h2>
+                	<h2>이젠 북컴퍼니 회원 이용약관</h2>
 					<div class="box">
 						<b>제1장 총칙</b>
 						<br><br>
 						<b>제1조 (목적)</b>
 						<br>
-						<span>본 약관은 『라온 도서관 시스템』을 구축에 따라  회원 정보를 통합 운영함에 있어 이용자와 도서관간의 이용조건 및 절차, 
+						<span>본 약관은 『이젠 북컴퍼니 시스템』을 구축에 따라  회원 정보를 통합 운영함에 있어 이용자와 도서관간의 이용조건 및 절차, 
 						이용에 관한 권리와 의무 등 제반사항을 규정함을 목적으로 한다. </span>
 						<br><br>
 						<b>제2조 (용어)</b>
@@ -119,7 +119,7 @@
 						</table>
 						<br>
 						<span>
-						② 회원 가입과 동시에 라온도서관 회원으로 가입된다.<br>
+						② 회원 가입과 동시에 이젠북컴퍼니 회원으로 가입된다.<br>
 						③ 도서관 관리자는 제6조 ①항에서 정한 사항을 정확히 기재하여 이용신청을 하였을 경우 특별한 사정이 없는 한 서비스 이용신청을 승낙하여야 한다. 단, 다음의 경우 회원 가입을 취소할 수 있다.<br>
 						　1. 본인의 실명으로 신청하지 않았을 때<br>
 						　2. 다른 사람의 명의를 사용하여 신청하였을 때<br>

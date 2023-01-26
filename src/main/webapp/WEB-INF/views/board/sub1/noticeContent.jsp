@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>라온도서관 > 열린공간 > 공지사항</title>
+	<title>이젠북컴퍼니 > 열린공간 > 공지사항</title>
 <link rel="stylesheet" href="/resources/css/board/sub1/notice_content_page.css">
 <link rel="stylesheet" href="/resources/css/header.css"> 
 <link rel="stylesheet" href="/resources/css/footer.css">

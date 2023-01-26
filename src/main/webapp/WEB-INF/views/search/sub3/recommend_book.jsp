@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>라온도서관 > 자료검색 > 추천도서</title>
+	<title>이젠북컴퍼니 > 자료검색 > 추천도서</title>
 </head>
 <link rel="stylesheet" href="/resources/css/search/recommend_book.css">
 <link rel="stylesheet" href="/resources/css/header.css">

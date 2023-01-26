@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>라온도서관 > 열린공간 > 도서관일정</title>
+<title>이젠북컴퍼니 > 열린공간 > 도서관일정</title>
 </head>
 <link rel="stylesheet" href="/resources/css/board/sub5/calendar.css">
 <link rel="stylesheet" href="/resources/css/board/sub5/calendar2.css">

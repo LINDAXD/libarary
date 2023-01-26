@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>라온도서관 > 나의도서관 > 찜한 도서</title>
+<title>이젠북컴퍼니 > 나의도서관 > 찜한 도서</title>
 <link rel="stylesheet" href="/resources/css/mylib/sub1/loan_history.css">
 <link rel="stylesheet" href="/resources/css/header.css">
 <link rel="stylesheet" href="/resources/css/footer.css">
@@ -120,9 +120,35 @@
 											<td>
 												<form action="/search/delete-like" method="post" onsubmit="return false;" class="likeForm">
                                                 	<input type="hidden" name="book_isbn" value="${like_history.book_isbn }">
-						                        	<input type="submit" class="btn deleteBtn" value="삭제" style="margin-bottom:3px;">
+						                        	<input type="submit" class="btn deleteBtn" value="삭제" style="margin-bottom:5px;width:80px;">
 						                        </form>
-												<button type="button" class="btn addBagBtn" value="장바구니 담기" style="width:80px;">장바구니</button>
+												
+												 <form id="cart" onsubmit="return false;" method="post">
+                        
+						                        	<sec:authorize access="isAuthenticated()">
+														<input type="hidden" class="user_email" name="user_email" 
+														value=<sec:authentication property="principal.dto.user_email"/> >
+													</sec:authorize>
+													
+													<sec:authorize access="isAnonymous()">
+														<input type="hidden" class="user_email" name="user_email">
+													</sec:authorize>
+													
+													<input type="hidden" name="book_title" value="${book.book_title }">
+													<input type="hidden" name="book_author" value="${book.book_author }">
+													<input type="hidden" class="book_isbn" name="book_isbn" value="${book.book_isbn }">
+													<input type="hidden" name="book_cover" value="${book.book_cover }">
+													<input type="hidden" name="book_pubDate" value="${book.book_pubDate }">
+													<input type="hidden" name="book_publisher" value="${book.book_publisher }">
+													<input type="hidden" name="priceStandard" value="${book.priceStandard }">
+													
+													<input type="hidden" name="amount" value="${cri.amount }">
+													<input type="hidden" name="page" value="${cri.page }">
+													<input type="hidden" name="type" value="${cri.type }">
+													<input type="hidden" name="keyword" value="${cri.keyword }">
+													
+						                            <button id="cart_btn" class="addBagBtn btn btn2" style="width:80px;">  장바구니 </button>
+						                        </form>
 											</td>
 										</tr>
 										</c:forEach>
@@ -203,8 +229,60 @@
 			})
 		});
 		
-	</script>	
+	</script>
+<!-- 장바구니  -->		
+<script>
+$(function() {
+	$(".sub1").addClass("active"); //왼쪽 카테고리 '도서검색' 활성화
 
+	$("#cart_btn").click(function() {
+		
+		let email = $('.user_email').val(); 
+		let book_isbn = $('.book_isbn').val(); 
+		
+		
+		if(email == "") {
+			alert("로그인 후 이용해주세요");
+			location.href="/member/login";
+		} else {
+			
+			if (confirm("장바구니에 담겠습니까?")) {
+			
+				let data = {
+           				book_isbn: book_isbn
+           			
+           		};
+				
+				$.ajax({
+           			type: "post",
+           			url: "/search/cartChk",
+           			data: data,
+           			success: function(result) {
+           				
+           				if (result == "success") {
+           					alert("내 장바구니 등록되었습니다.");
+           					$("#cart").attr("action", "/search/cart?detail=not");
+           					$("#cart").attr("onsubmit", "return true;");
+           					$("#cart").submit();
+       						
+           				} else if (result == "alreadyCart"){
+           					alert("이미 담긴 도서입니다.");
+           				} 
+           			}
+           		});
+			
+			}
+			
+			
+		} 
+			
+	});
+	
+	
+});
+
+
+</script>
 
 </body>
 </html>

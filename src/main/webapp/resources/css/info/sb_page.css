@@ -29,16 +29,17 @@ ul {
 /* 전체 container */
 .container {
 	margin: 0 auto;
-	width: 1900px;
+	width: 1300px;
 	height: auto;
 }
 
 .sub_title {
-	width: 1900px;
+	width: 1300px;
 	height: 140px;
 	margin: 0 auto;
-	background-image: url(/resources/imges/common/sub-visual.gif);
+	/* background-image: url(/resources/imges/common/sub-visual.gif); */
 	text-align: center;
+	margin-left:-50px;
 }
 
 .doc-info {
@@ -104,20 +105,22 @@ ul {
 .lnb {
 	width: 280px;
 	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
 
 .lnb h2 {
 	width: 220px !important;
 	display: block;
-	background: url(/resources/imges/common/lnb-bg-new.gif) repeat-y 1px;
 	height: 140px;
 	margin-top: -140px;
 	margin-bottom: 0px;
+	background-color:beige;
 }
 
 .lnb h2 b {
 	display: block;
-	color: #fff;
+	color: black;
 	font-size: 24px;
 	line-height: 140px;
 	margin: 0;
@@ -125,10 +128,10 @@ ul {
 	font-weight: bold;
 }
 
-.lnb ul li.active>a {
-	background-color: #464f56;
-	color: #fff;
-	position: relative;
+.lnb ul li.active > a {
+    background-color: #c79d6a;
+    color: #fff;
+    position: relative;
 }
 
 .subMenu li {
@@ -148,10 +151,10 @@ ul {
 }
 
 /* 사이드 바 hover */
-.subMenu li a:hover {
-	background-color: #464f56;
-	color: #fff;
-	position: relative;
+.subMenu li a:hover{
+    background-color: #c79d6a;
+    color: #fff;
+    position: relative;
 }
 
 /* 본문 부분 */

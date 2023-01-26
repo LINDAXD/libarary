@@ -25,16 +25,17 @@ ul{
 /* 전체 container */
 .container{
     margin: 0 auto;
-    width: 1900px;
+    width: 1300px;
     height: auto;
 }
 
-.sub_title{
-    width: 1900px;
-    height: 140px;
-    margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
-    text-align: center;
+.sub_title {
+	width: 1300px;
+	height: 140px;
+	margin: 0 auto;
+	/* background-image: url(/resources/imges/common/sub-visual.gif); */
+	text-align: center;
+	margin-left:-50px;
 }
 
 .doc-info{
@@ -94,27 +95,29 @@ ul{
 .section::after {content: "";display: block; clear: both;}
 
 .lnb {
-    width:280px;
-    float:left;
+	width: 280px;
+	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
 
-.lnb h2{
-    width: 220px !important;
-    display: block;
-    background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px;
-    height: 140px;
-    margin-top: -140px;
-    margin-bottom: 0px;
+.lnb h2 {
+	width: 220px !important;
+	display: block;
+	height: 140px;
+	margin-top: -140px;
+	margin-bottom: 0px;
+	background-color:beige;
 }
 
-.lnb h2 b{
-    display: block;
-    color: #fff;
-    font-size: 24px;
-    line-height: 140px;
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
+.lnb h2 b {
+	display: block;
+	color: black;
+	font-size: 24px;
+	line-height: 140px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
 }
 
 .subMenu li{
@@ -135,13 +138,13 @@ ul{
 
 /* 사이드 바 hover */
 .subMenu li a:hover{
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
 
 .lnb ul li.active > a {
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -236,10 +239,11 @@ input:focus{
     letter-spacing: -1px;
     font-size: 90%;
     display: inline-block;
-    background-color: #2c256e;
+    background-color: #eaeaea;
     border: none;
-    color: white;
+    color: black;
     cursor: pointer;
+    border-radius:7px;
 }
 .zip_btn:focus, .email_btn:focus, .zip_btn:active, .email_btn:active{
     border: none; box-shadow: none;
@@ -247,17 +251,19 @@ input:focus{
 }
 
 .zip_btn:hover, .email_btn:hover {
-    background-color: #241e55;
+    background-color: #333333;
+    color:white;
 }
 .join_button{
-    float: right;
-    margin-top: 20px;
+	width:300px;
+    margin-top: 30px;
+    margin-left:300px;
     cursor: pointer;
-    background-color: #266ac4;
+    background-color: #333333;
     border: none;
     border-radius: 5px;
-    color: #fff;
-    font-size: 12px;
+    color: white;
+    font-size: 14px;
 }
 
 .join_button:focus, .join_button:active{
@@ -265,7 +271,7 @@ input:focus{
 
 }
 .join_button:hover{
-    background-color: #215aa3;
+    opacity:0.6;
 }
 
 /* id */

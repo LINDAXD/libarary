@@ -275,14 +275,15 @@ th, td{
 }
 
 .btn2{
-    width: 120px;
-    height: 35px;
-    background-color: #f1b55c;
-    border: none;
+    width: 130px;
+    height: 45px;
+    background-color: #c79d6a;
+    border: 1px solid #c79d6a;
     border-radius: 5px;
-    color: #fff;
+    color: #ffffff;
     font-size: 15px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .btn2:focus, .btn2:active{
@@ -290,14 +291,14 @@ th, td{
 }
 
 .btn2:hover{
-    background-color: rgb(255, 185, 70);
+    background-color: #b89367;
 }
 
 .btn3{
     width: 120px;
     height: 35px;
-    background-color: rgb(240, 240, 235);
-    border: 1px solid rgb(195, 195, 190);
+    background-color: #c79d6a;
+    border: 1px solid #c79d6a;
     border-radius: 5px;
     color: black;
     font-size: 15px;
@@ -310,3 +311,50 @@ th, td{
 .btn3:hover{
     background-color: rgb(228, 228, 222);
 }
+
+.review_input{
+    width: 800px;
+    resize: none; 
+}
+
+input[value=리뷰작성하기]{
+    width: 100px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 1px solid #c79d6a;
+    border-radius: 5px;
+    text-align: center;
+}
+
+input[value=리뷰작성하기]:hover{
+    background-color: #c79d6a;
+}
+
+.delete_btn{
+    background-color: #ffffff;
+    border:none;
+}
+.review_id{
+    position:relative;
+    width: 20px;
+    height: 20px;
+  }
+  .review_id img{
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    bottom:3px;
+    right: 40px;
+  }
+  .review_id img.deletepngopen{
+    display:none;
+
+  }
+  .review_id:hover img.img{
+    display:none;
+
+  }
+  .review_id:hover img.deletepngopen{
+    display:block;
+
+  }

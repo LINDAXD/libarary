@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-   <title>라온도서관 > 열린공간 > 분실물찾기</title>
+   <title>이젠북컴퍼니 > 열린공간 > 분실물찾기</title>
 </head>
 <link rel="stylesheet" href="/resources/css/board/sub4/write_page.css">
 <link rel="stylesheet" href="/resources/css/header.css">

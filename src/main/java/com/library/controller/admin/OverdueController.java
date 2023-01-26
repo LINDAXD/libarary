@@ -63,8 +63,8 @@ public class OverdueController {
 
 		String from = "library.raon@gmail.com";
 		String to[] = request.getParameterValues("user_email");
-		String title = "라온 도서관 : 연체 도서 안내";
-		String content = "라온 도서관을 이용해주셔서 감사합니다." + "<br><br>" + "현재 연체된 도서가 있으니 반납 바랍니다." + "<br><br>";
+		String title = "이젠 북컴퍼니 : 연체 도서 안내";
+		String content = "이젠 북컴퍼니를 이용해주셔서 감사합니다." + "<br><br>" + "현재 연체된 도서가 있으니 반납 바랍니다." + "<br><br>";
 		
 
 		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -73,7 +73,7 @@ public class OverdueController {
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				final MimeMessageHelper mailHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 				
-				mailHelper.setFrom(new InternetAddress(from, "라온도서관", "UTF-8"));
+				mailHelper.setFrom(new InternetAddress(from, "이젠북컴퍼니", "UTF-8"));
 				mailHelper.setTo(to);
 				mailHelper.setSubject(title);
 				mailHelper.setText(content, true);
