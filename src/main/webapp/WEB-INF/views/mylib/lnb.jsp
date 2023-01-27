@@ -57,10 +57,13 @@
         
         <!--========================== 찜하기 추가 =================================-->
       	<li class="sub6">
-            <a href="/mylib/like-history">찜한 도서</a>
+            <a href="/mylib/like-history">찜한도서</a>
        	 </li>
-       	 <li class="sub6">
+       	 <li class="sub7">
             <a href="/mylib/cart-history">장바구니</a>
+       	 </li>
+       	 <li class="sub8">
+            <a href="/buy/book_buylist">구매내역</a>
        	 </li>
         
         

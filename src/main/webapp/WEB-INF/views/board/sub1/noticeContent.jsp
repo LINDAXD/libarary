@@ -194,8 +194,7 @@
 
                                             <input type="hidden" name="uuid" id="uuid">
                                             <input type="hidden" name="file_type" id="file_type">
-                                            <button class="delete_btn"
-                                                style="background-color: #518d7d; border: 1px solid #3e6b5f;">삭제하기</button>
+                                            <button class="delete_btn" style="background-color:gray;">삭제하기</button>
                                         </form>
                                     </div>
 

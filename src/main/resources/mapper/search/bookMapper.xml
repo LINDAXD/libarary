@@ -64,10 +64,10 @@
 	<!-- 찜하기 -->
 	<insert id="like">
 		insert into like_history(user_id, user_email, book_title, book_author, book_isbn, 
-		book_cover, book_pubDate, book_publisher)
+		book_cover, book_pubDate, book_publisher, bookCount, priceStandard)
 		values
 		(#{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
-		#{book_pubDate}, #{book_publisher})
+		#{book_pubDate}, #{book_publisher}, 1, #{priceStandard})
 	</insert>
 	
 	<!-- 찜한 도서 삭제하기 -->

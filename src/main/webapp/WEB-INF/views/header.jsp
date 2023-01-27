@@ -34,7 +34,7 @@
     <div>
         <ul class="header_menu">
             <li>
-                <div style=" width: 160px; height: 70px; margin-right: 250px;">
+                <div class="header_menu_wrap" style=" width: 170px; height: 70px; margin-right: 80px;">
                 	<a href="/"><img src="/resources/imges/index/ezen-logo-black.png"></a>
                 </div>
             </li>
@@ -82,6 +82,9 @@
         <li><span><a href="/mylib/loan-history">도서관련</a></span></li>
         <li><span><a href="/mylib/hope">희망도서신청/조회</a></span></li>
         <li><span><a href="/mylib/mypage">개인정보</a></span></li>
+        <li><span><a href="/mylib/like-history">찜한도서</a></span></li>
+        <li><span><a href="/mylib/cart-history">장바구니</a></span></li>
+        <li><span><a href="/buy/book_buylist">구매내역</a></span></li>
     </ul>
 </div>
 <script

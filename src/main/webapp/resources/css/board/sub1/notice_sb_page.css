@@ -245,12 +245,12 @@ table td.left{
     background-color: #eaeaea;
     color: black;
     padding: 7px 13px;
-    border: 1px solid #1557af;
     border-radius: 5px;
     float: right;
     width: 80px;
     margin-top: 20px;
     cursor: pointer;
+    border:none;
 }
 
 

@@ -164,35 +164,17 @@
                                 <li>
                                     <a class="" href="/mylib/loan-history">도서관련</a>
                                     <a class="" href="/mylib/hope">희망도서신청/조회</a>
-                                    <a class="" href="/mylib/mypage">마이페이지</a>
+                                    <a class="" href="/mylib/like-history">찜한도서</a>
+                                    <a class="" href="/mylib/cart-history">장바구니</a>
+                                    <a class="" href="/buy/book_buylist">구매내역</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-<!--                     <a id="site-map-Link" class="site-map" href="#a" title="사이트맵">
-                        <img src="/resources/imges/index/sitemap1.png" alt="사이트맵">
-                    </a> -->
                 </div>
             </div><!-- gnb -->
            
             
-            <!----------------------------- 배너 슬라이더 추가 -->
-<!--         	<div id="header">
-			    <ul class="top_bg">
-			        <li class="top_bg1"></li>
-			        <li class="top_bg2"></li>
-			        <li class="top_bg3"></li>
-			    </ul>photo
-			    <p>
-			        <button type="button" class="prev">&lt;</button>
-			        <button type="button" class="next">&gt;</button>
-			    </p>
-			    <ul id="bx-pager1">
-			        <li><button type="button" title="1번버튼" data-n="1" class="btn btn1 active">1</button></li>
-			        <li><button type="button" title="2번버튼" data-n="2" class="btn btn2">2</button></li>
-			        <li><button type="button" title="3번버튼" data-n="3" class="btn btn3">3</button></li>
-			    </ul>btn_wrap
-			</div>  wrap -->
 			
 			<div id="header2">
 				<ul class="top_bg">
@@ -240,30 +222,30 @@
                 <ul class="icons">
                     <li>
                         <div class="icon_img">
-                            <a href="/search/book"><img src="/resources/imges/info/purchasing.png">
+                            <a href="/buy/book_buylist"><img src="/resources/imges/info/purchasing.png">
                         </div>
                         <class="contents1_bold">구매내역조회</class></a>
                     <li>
                         <div class="icon_img">
-                            <a href="/mylib/hope"><img src="/resources/imges/info/books.png">
+                            <a href="/mylib/loan-history"><img src="/resources/imges/info/books.png">
                         </div>
                         <class="contents1_bold">대출내역조회</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="/mylib/loan-history"><img src="/resources/imges/info/heart.png">
+                            <a href="/mylib/like-history"><img src="/resources/imges/info/heart.png">
                         </div>
                         <class="contents1_bold">찜한도서</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="/board/calendar"><img src="/resources/imges/info/clipboard.png">
+                            <a href="/board/noticeList"><img src="/resources/imges/info/clipboard.png">
                         </div>
                         <class="contents1_bold">공지사항</class></a>
                     </li>
                     <li>
                         <div class="icon_img">
-                            <a href="#a"><img src="/resources/imges/info/lightbulb.png">
+                            <a href="/info/signup"><img src="/resources/imges/info/lightbulb.png">
                         </div>
                         <class="contents1_bold">이용안내</class></a>
                     </li>

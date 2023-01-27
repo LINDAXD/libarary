@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,32 +125,34 @@
 						                        	<input type="submit" class="btn deleteBtn" value="삭제" style="margin-bottom:5px;width:80px;">
 						                        </form>
 												
-												 <form id="cart" onsubmit="return false;" method="post">
-                        
-						                        	<sec:authorize access="isAuthenticated()">
-														<input type="hidden" class="user_email" name="user_email" 
-														value=<sec:authentication property="principal.dto.user_email"/> >
-													</sec:authorize>
-													
-													<sec:authorize access="isAnonymous()">
-														<input type="hidden" class="user_email" name="user_email">
-													</sec:authorize>
-													
-													<input type="hidden" name="book_title" value="${book.book_title }">
-													<input type="hidden" name="book_author" value="${book.book_author }">
-													<input type="hidden" class="book_isbn" name="book_isbn" value="${book.book_isbn }">
-													<input type="hidden" name="book_cover" value="${book.book_cover }">
-													<input type="hidden" name="book_pubDate" value="${book.book_pubDate }">
-													<input type="hidden" name="book_publisher" value="${book.book_publisher }">
-													<input type="hidden" name="priceStandard" value="${book.priceStandard }">
-													
-													<input type="hidden" name="amount" value="${cri.amount }">
-													<input type="hidden" name="page" value="${cri.page }">
-													<input type="hidden" name="type" value="${cri.type }">
-													<input type="hidden" name="keyword" value="${cri.keyword }">
-													
-						                            <button id="cart_btn" class="addBagBtn btn btn2" style="width:80px;">  장바구니 </button>
-						                        </form>
+										<!--------------  장바구니 추가 ------------------>
+										 <form id="cart" onsubmit="return false;" method="post">
+				                        
+											<sec:authorize access="isAuthenticated()">
+												<input type="hidden" class="user_email" name="user_email"
+													value=<sec:authentication property="principal.dto.user_email"/>>
+											</sec:authorize>
+											
+											<sec:authorize access="isAnonymous()">
+											<input type="hidden" class="user_email" name="user_email">
+											</sec:authorize>
+											
+											<input type="hidden" name="book_title" value="${like_history.book_title }">
+											<input type="hidden" name="book_author" value="${like_history.book_author }">
+											<input type="hidden" class="book_isbn" name="book_isbn" value="${like_history.book_isbn }">
+											<input type="hidden" name="book_cover" value="${like_history.book_cover }">
+											<input type="hidden" name="book_pubDate" value="${like_history.book_pubDate }">
+											<input type="hidden" name="book_publisher" value="${like_history.book_publisher }">
+											<input type="hidden" name="priceStandard" value="${like_history.priceStandard }"> 
+											
+											<%-- <input type="hidden" name="amount" value="${cri.amount }">
+											<input type="hidden" name="page" value="${cri.page }">
+											<input type="hidden" name="type" value="${cri.type }"> --%>
+											<input type="hidden" name="keyword" value="${cri.keyword }"> 
+											
+				                            <button id="cart_btn" class="btn2 cart_btn btn" style="width:80px;">장바구니</button>
+				                           
+				                        </form>
 											</td>
 										</tr>
 										</c:forEach>
@@ -201,8 +205,7 @@
 	<script>
 		
 		$(function() {
-			$(".sub1").addClass("active");
-			$(".submenu1").addClass("active");
+			$(".sub6").addClass("active");
 			
 			let moveForm = $(".moveForm");
 			
@@ -233,9 +236,9 @@
 <!-- 장바구니  -->		
 <script>
 $(function() {
-	$(".sub1").addClass("active"); //왼쪽 카테고리 '도서검색' 활성화
+	$(".sub6").addClass("active"); //왼쪽 카테고리 '도서검색' 활성화
 
-	$("#cart_btn").click(function() {
+	$(".cart_btn").click(function() {
 		
 		let email = $('.user_email').val(); 
 		let book_isbn = $('.book_isbn').val(); 
@@ -250,7 +253,6 @@ $(function() {
 			
 				let data = {
            				book_isbn: book_isbn
-           			
            		};
 				
 				$.ajax({

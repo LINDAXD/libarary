@@ -24,16 +24,17 @@ ul{
 
 .container{
     margin: 0 auto;
-    width: 1900px;
+    width: 1300px;
     height: auto;
 }
 
-.sub_title{
-    width: 1900px;
-    height: 140px;
-    margin: 0 auto;
-    background-image: url(/resources/imges/common/sub-visual.gif);
-    text-align: center;
+.sub_title {
+	width: 1300px;
+	height: 140px;
+	margin: 0 auto;
+	/* background-image: url(/resources/imges/common/sub-visual.gif); */
+	text-align: center;
+	margin-left:-50px;
 }
 
 .doc-info{
@@ -93,31 +94,33 @@ ul{
 .section::after {content: "";display: block; clear: both;}
 
 .lnb {
-    width:280px;
-    float:left;
+	width: 280px;
+	float: left;
+	margin-left:-50px;
+	margin-top:30px;
 }
 
-.lnb h2{
-    width: 220px !important;
-    display: block;
-    background: url(/resources/imges/common/lnb-bg-new.gif)repeat-y 1px;
-    height: 140px;
-    margin-top: -140px;
-    margin-bottom: 0px;
+.lnb h2 {
+	width: 220px !important;
+	display: block;
+	height: 140px;
+	margin-top: -140px;
+	margin-bottom: 0px;
+	background-color:beige;
 }
 
-.lnb h2 b{
-    display: block;
-    color: #fff;
-    font-size: 24px;
-    line-height: 140px;
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
+.lnb h2 b {
+	display: block;
+	color: black;
+	font-size: 24px;
+	line-height: 140px;
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
 }
 
 .lnb ul li.active > a {
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -140,7 +143,7 @@ ul{
 
 /* 사이드 바 hover */
 .subMenu li a:hover{
-    background-color: #464f56;
+    background-color: #c79d6a;
     color: #fff;
     position: relative;
 }
@@ -234,15 +237,15 @@ textarea{
 
 /* 글쓰기 / 수정하기 / 삭제하기 btn */
 .write_btn, .update_btn, .delete_btn{
-    background-color: #266ac4;
-    color: #fff;
+    background-color: #eaeaea;
+    color: black;
     padding: 7px 13px;
-    border: 1px solid #1557af;
     border-radius: 5px;
     float: right;
     width: 80px;
     margin-top: 20px;
     cursor: pointer;
+    border:none;
 }
 
 .delete_wrap{

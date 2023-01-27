@@ -12,3 +12,25 @@ $(document).ready(function(){
   })
 
 });
+
+
+$(document).ready(function(){
+    //태그추가
+    $("#main_navi").before("<div class='bg'></dib>");
+
+    //
+    $(".bg, .sub-menu").hide();
+    $(".gnb-ul").mouseenter(function(){
+        $(".bg, .sub-menu").stop().slideDown("fast");
+    }).mouseleave(function(){
+        $(".bg, .sub-menu").stop().slideUp();
+    });
+
+    $(".bg").mouseover(function(){
+        $(this).stop().show();
+        $(".sub-menu").stop().show();
+    }).mouseout(function(){
+        $(this).stop().slideUp();
+        $(".sub-menu").stop().slideUp();
+    });
+    });

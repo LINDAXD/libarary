@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <html>
 <head>
 	<title>이젠북컴퍼니 > 자료검색 > 도서검색</title>
@@ -154,6 +155,7 @@
 														<input type="hidden" name="page" value="${cri.page }">
 														<input type="hidden" name="type" value="${cri.type }">
 														<input type="hidden" name="keyword" value="${cri.keyword }">
+														<input type="hidden" name="priceStandard" value="${book.priceStandard }">
 														<button id="like_btn" class=" btn2">찜하기</button>
 													</form>
 													
@@ -209,8 +211,8 @@
 
                     </div>
                     
-                    					<!-- 추가 -->
-					<div class="container">
+                    <!-- 추가 -->
+					<div class="container2">
 						<br> <br>
 						<sec:authorize access="isAuthenticated()">
 						<div>
@@ -235,7 +237,7 @@
 									
 							</form>
 						</div>
-</sec:authorize>
+						</sec:authorize>
 					</div>
 					<div>
 						<span><strong>Review 리스트</strong></span> <span id="cCnt"></span>
@@ -366,9 +368,9 @@
 	           				
 	           				if (result == "success") {
 	           					alert("내 찜리스트에 등록되었습니다.");
-	           					$("#loan").attr("action", "/search/like?detail=not");
-	           					$("#loan").attr("onsubmit", "return true;");
-	           					$("#loan").submit();
+	           					$("#like").attr("action", "/search/like?detail=not");
+	           					$("#like").attr("onsubmit", "return true;");
+	           					$("#like").submit();
 	       						
 	           				} else if (result == "alreadyLike"){
 	           					alert("이미 찜한 도서입니다.");

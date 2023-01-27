@@ -338,6 +338,7 @@ input[value=리뷰작성하기]:hover{
     position:relative;
     width: 20px;
     height: 20px;
+    margin-bottom:5px;
   }
   .review_id img{
     position:absolute;

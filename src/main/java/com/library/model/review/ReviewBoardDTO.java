@@ -2,8 +2,6 @@ package com.library.model.review;
 
 import java.sql.Timestamp;
 
-import com.library.model.board.AnswerBoardDTO;
-
 import lombok.Data;
 
 @Data

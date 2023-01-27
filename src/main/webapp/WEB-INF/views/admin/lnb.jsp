@@ -37,13 +37,6 @@
             </ul>
             
         </li>
-        <li class="sub6">
-            <a href="/admin/seat-list">열람실이용정보</a>
-        </li>
-        <li class="sub4">
-            <a href="/admin/calendar-list">일정목록</a>
-        </li>
-        
         <li class="sub5">
         	<a href="/admin/banner-list">배너목록</a>
         </li>

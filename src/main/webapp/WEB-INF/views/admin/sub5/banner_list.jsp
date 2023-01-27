@@ -93,7 +93,7 @@
 
                                 <br>
 
-                                <div style="float: right;">
+                                <div>
                                     <button class="add_btn btn">추가</button>
                                 </div>
 

@@ -88,7 +88,6 @@ public class MyLoanHistoryController {
 		// 로그인 된 user_id 받아오기
 		String id = principal.getName();
 
-
 		// 회원의 찜한 내역 받아오기
 		List<BookDTO> like_history = service.like_history(id, cri);
 

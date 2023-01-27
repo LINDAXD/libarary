@@ -273,6 +273,7 @@ public class BookController {
 		System.out.println("찜한 책 제목 : " + book.getBook_title());
 		System.out.println("찜한 책 ISBN : " + book.getBook_isbn());
 		System.out.println("keyword : " + cri.getKeyword());
+		System.out.println("가격 : " + book.getPriceStandard());
 		System.out.println("========================================================\n");
 
 		String keyword;
@@ -465,6 +466,8 @@ public class BookController {
 			}
 		
 		}
+		
+		
 		@PostMapping("/cart-history/update")
 		public String updateCartPOST(
 			 @RequestParam(required=false) String book_title,
