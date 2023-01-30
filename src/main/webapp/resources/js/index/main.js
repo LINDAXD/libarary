@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     //태그추가
-    $("#main_navi").before("<div class='bg'></dib>");
+    $("#main_navi").before("<div class='bg'></div>");
 
     //
     $(".bg, .sub-menu").hide();

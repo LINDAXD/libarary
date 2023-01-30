@@ -5,7 +5,7 @@ $(document).ready(function(){
       $('.sub-menu').show();
       $('.hover_bg').show();
     });
-    $('.gnb-ul').mouseleave(function(){
+    $('.sub-menu').mouseleave(function(){
       $('.gnb-li > a > span').removeClass("active");
       $('.sub-menu').hide();
       $('.hover_bg').hide();

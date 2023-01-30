@@ -105,10 +105,7 @@
             <!-- 하단 nav(본 메뉴) 작업 시작하기 -->
             <div class="gnb">
                 <div class="container">
-                    <!-- <h1 class="logo">
-                        <a id="logoLink" href="/" title="이젠북컴퍼니 메인화면" role="button"><span
-                                class="hide"></span></a>
-                    </h1> -->
+                    <nav id=main_navi>
                     <ul class="gnb-ul">
                         <li class="gnb-li">
                             <a class="Depth" href="/search/book">
@@ -171,6 +168,7 @@
                             </ul>
                         </li>
                     </ul>
+                    </nav>
                 </div>
             </div><!-- gnb -->
            

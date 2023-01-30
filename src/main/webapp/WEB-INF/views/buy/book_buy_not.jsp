@@ -183,17 +183,12 @@
                            <p>받는분께 메시지</p>
                            <input type="text" class="msg" maxlength='30'
                               placeholder="30자 이내로 작성해주세요">
-                           <p class="resultprice">
+                           <p>
                               최종 결제금액
-                              <fmt:formatNumber value="${book.resultpriceStandard }"
-                                 type="currency" />
-                              원 (배달료 2500원 추가)
-                           </p>
-                           <p class="packagingprice">
-                              최종 결제금액
-                              <fmt:formatNumber value="${book.packagingprice }"
-                                 type="currency" />
-                              원 (배달료 2500원 + 선물포장 1000원 추가)
+								<c:forEach var="buy_history" items="${buy_history}">
+									<p>수량 : ${buy_history.bookCount}</p>
+									<p>가격 : <fmt:formatNumber value="${buy_history.book_price}" type="currency" />원 (배달료 2500원 추가)</p>
+								</c:forEach>
                            </p>
                            <span id="agree">주문하실 상품, 가격, 배송정보, 할인정보 등을 확인하였으며, 구매에
                               동의하시겠습니까?</span>
@@ -201,8 +196,10 @@
                               <input type="checkbox" id="l_agree"><span>동의합니다.(전자상거래법 제 8조
                                  제 2항)</span>
                            </p>
-                        </fieldset>
 
+                        </fieldset>
+                        
+                        
 
                         <sec:authorize access="isAuthenticated()">
                            <input type="hidden" class="user_email" name="user_email"
@@ -224,9 +221,9 @@
                            name="amount" value="${cri.amount}"> <input
                            type="hidden" name="page" value="${cri.page}"> <input
                            type="hidden" name="type" value="${cri.type}"> <input
-                           type="hidden" name="keyword" value="${cri.keyword}"> <input
-                           type="hidden" name="priceStandard"
-                           value="${book.priceStandard}">
+                           type="hidden" name="keyword" value="${cri.keyword}"> 
+                           
+                           <input type="hidden" name="priceStandard" value="${book.priceStandard}">
                            
                            
                            <input
@@ -314,11 +311,11 @@
                   if (confirm("결제하시겠습니까?")) {
                   
                        if(no == true){
-                          $("#buy").attr("action", "/buy/buybook");
+                          $("#buy").attr("action", "/buy/buybook_not");
                           $("#buy").attr("onsubmit", "return true;");
                           $("#buy").submit();
                        } else if (yes == true){
-                          $("#buy").attr("action", "/buy/pre_buybook");
+                          $("#buy").attr("action", "/buy/buybook_not");
                           $("#buy").attr("onsubmit", "return true;");
                           $("#buy").submit();
                        }

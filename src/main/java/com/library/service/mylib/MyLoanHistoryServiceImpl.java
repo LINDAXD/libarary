@@ -56,21 +56,21 @@ public class MyLoanHistoryServiceImpl implements MyLoanHistoryService {
 		}
 		
 		@Override
-		public int get_total_count(String bookCount) {
+		public int get_total_count(String user_id) {
 			// TODO Auto-generated method stub
-			return mapper.get_total_count(bookCount);
+			return mapper.get_total_count(user_id);
 		}
 
 
 
 		@Override
-		public List<BookDTO> get_total_pay(String bookCount, String priceStandard) {
-			return mapper.get_total_pay(bookCount, priceStandard);
+		public List<BookDTO> get_total_pay(String user_id, String priceStandard) {
+			return mapper.get_total_pay(user_id, priceStandard);
 		}
 
 		@Override
-		public int get_total_final(String bookCount, String priceStandard) {
-			return mapper.get_total_final(bookCount, priceStandard);
+		public int get_total_final(String user_id, String priceStandard) {
+			return mapper.get_total_final(user_id, priceStandard);
 		} 
 		
 }

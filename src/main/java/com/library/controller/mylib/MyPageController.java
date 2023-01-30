@@ -136,38 +136,42 @@ public class MyPageController {
 		// 회원 정보 받아오기
 		MemberDTO my = myPageService.my_view(id);
 
+		// 회원 테이블 정리
+		myPageService.delete_buyhistory(id);
+		myPageService.delete_cart(id);
+		myPageService.delete_likehistory(id);
+		myPageService.delete_loanhistory(id);
+		myPageService.delete_review(id);
+		myPageService.delete_hope(id);
+		myPageService.delete_recommend_book(id);
+		myPageService.delete_notice(id);
+		myPageService.delete_answer(id);
+		myPageService.delete_enquiry(id);
+		
 		// 대출 중 도서 수
 		int count = my.getUser_book_count();
 
 		// db에 있는 회원 비밀번호
 		String db_pw = my.getUser_pw();
 
-		// 미반납 도서가 있을 시
-		if (count > 0) {
 
-			return "book";
+		// 입력한 비밀번호과 db에 있는 비밀번호가 같으면 탈퇴 수행
+		if (pwencoder.matches(user_pw, db_pw)) {
+
+			// 회원 탈퇴
+			myPageService.my_secession(id);
+
+			// 탈퇴 회원 테이블에 입력
+			myPageService.insert_secession(my);
+
+			// 세션 초기화
+			session.invalidate();
+
+			return "success";
 
 		} else {
 
-			// 입력한 비밀번호과 db에 있는 비밀번호가 같으면 탈퇴 수행
-			if (pwencoder.matches(user_pw, db_pw)) {
-
-				// 회원 탈퇴
-				myPageService.my_secession(id);
-
-				// 탈퇴 회원 테이블에 입력
-				myPageService.insert_secession(my);
-
-				// 세션 초기화
-				session.invalidate();
-
-				return "success";
-
-			} else {
-
-				return "fail";
-
-			}
+			return "fail";
 
 		}
 

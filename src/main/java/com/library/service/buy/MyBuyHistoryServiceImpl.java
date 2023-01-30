@@ -19,6 +19,11 @@ public class MyBuyHistoryServiceImpl implements MyBuyHistoryService{
 	public List<BookDTO> buy_history(String user_id, Criteria cri) {
 		return mapper.buy_history(user_id,cri);
 	}
+	
+	@Override
+	public List<BookDTO> r_buy_history(String user_id) {
+		return mapper.r_buy_history(user_id);
+	}
 
 	@Override
 	public int get_total_buy(String user_id) {

@@ -48,17 +48,20 @@
 			 where user_id = #{user_id} 
 		</select>
 		
-		<select id="get_total_count" resultType="int">
-			select sum(bookCount) from cart
-		</select>
-		
-		<select id="get_total_pay" resultType="int">
-			select bookCount * priceStandard from cart 
-		</select>
-		
-		<select id="get_total_final" resultType="int">
-			select sum(bookCount * priceStandard) from cart
-		</select>
+		 <select id="get_total_count" resultType="int">
+         <!-- select sum(bookCount) from cart  where user_id = #{user_id}  -->
+         SELECT IFNULL(SUM(bookCount), 0) FROM cart where user_id = #{user_id}
+      </select> 
+      
+      <select id="get_total_pay" resultType="int">
+          select bookCount * priceStandard from cart where user_id = #{user_id}  
+      
+      </select>
+      
+      <select id="get_total_final" resultType="int">
+      <!--    select sum( bookCount * priceStandard) from cart where user_id = #{user_id}  -->
+         select IFNULL(sum( bookCount * priceStandard),0) from cart where user_id = #{user_id}
+      </select> 
 		
 		<!-- 장바구니 페이징 --> 
 		<select id="cart_history" resultType="com.library.model.search.BookDTO">

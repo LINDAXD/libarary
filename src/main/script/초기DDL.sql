@@ -56,6 +56,89 @@ CREATE TABLE `loan_history` (
   CONSTRAINT `loan_history_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
 );
 
+-- 구매 내역 테이블 
+CREATE TABLE `buy_history` (
+  `buy_no` int(11) NOT NULL AUTO_INCREMENT, -- 대출 도서 번호
+  `book_price` int(255) not null, -- 책 구매 가격
+  `user_id` varchar(20) NOT NULL, -- 대출 회원 아이디
+  `user_email` varchar(40) not NULL, -- 대출 회원 이메일
+  `book_title` varchar(100) NOT NULL, -- 대출 도서 제목
+  `book_author` varchar(200) NOT NULL, -- 대출 도서 저자
+  `book_isbn` varchar(20) NOT NULL, -- 대출 도서 ISBN
+  `book_cover` varchar(2000) DEFAULT NULL, -- 대출 도서 표지 주소
+  `book_pubdate` varchar(20) NOT NULL, -- 대출 도서 출간일
+  `book_publisher` varchar(50) NOT NULL, -- 대출 도서 출판사
+  `bookCount` int not null,
+  `buy_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 대출 일자
+  `return_date` timestamp NULL DEFAULT NULL, -- 반납 일자
+  `return_period` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 도서 반납 기한
+  `return_status` tinyint(1) NOT NULL DEFAULT '0', -- 도서 반납 상태
+  PRIMARY KEY (`buy_no`),
+  KEY `buy_history_FK` (`user_id`),
+  CONSTRAINT `buy_history_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
+);
+
+-- 장바구니 테이블
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT, -- 대출 도서 번호
+  `user_id` varchar(20) NOT NULL, -- 대출 회원 아이디
+  `user_email` varchar(40) not NULL, -- 대출 회원 이메일
+  `book_title` varchar(100) NOT NULL, -- 대출 도서 제목
+  `book_author` varchar(200) NOT NULL, -- 대출 도서 저자
+  `book_isbn` varchar(20) NOT NULL, -- 대출 도서 ISBN
+  `book_cover` varchar(2000) DEFAULT NULL, -- 대출 도서 표지 주소
+  `book_pubdate` varchar(20) NOT NULL, -- 대출 도서 출간일
+  `book_publisher` varchar(50) NOT NULL, -- 대출 도서 출판사
+  `bookCount` int not null,
+  `priceStandard` int not null,
+  PRIMARY KEY (`cart_id`),
+  KEY `cart_FK` (`user_id`),
+  CONSTRAINT `cart_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
+);
+
+--찜하기 테이블
+CREATE TABLE `like_history` (
+  `like_no` int(11) NOT NULL AUTO_INCREMENT, -- 찜한 도서 번호
+  `user_id` varchar(20) NOT NULL, -- 찜한 회원 아이디
+  `user_email` varchar(40) not NULL, -- 찜한 회원 이메일
+  `book_title` varchar(100) NOT NULL, -- 찜한 도서 제목
+  `book_author` varchar(200) NOT NULL, -- 찜한 도서 저자
+  `book_isbn` varchar(20) NOT NULL, -- 찜한 도서 ISBN
+  `book_cover` varchar(2000) DEFAULT NULL, -- 찜한 도서 표지 주소
+  `book_pubdate` varchar(20) NOT NULL, -- 찜한 도서 출간일
+  `book_publisher` varchar(50) NOT NULL, -- 찜한 도서 출판사
+  `bookCount` int not null, -- 찜한 도서 수량
+  PRIMARY KEY (`like_no`),
+  KEY `like_history_FK` (`user_id`),
+  CONSTRAINT `like_history_FK` FOREIGN KEY (`user_id`) REFERENCES `member` (`user_id`)
+);
+
+-- 리뷰 테이블
+CREATE TABLE `review` (
+  `review_no` int(10) NOT NULL AUTO_INCREMENT, -- 후기 게시글 번호
+  `review_content` varchar(8196) NOT NULL, -- 후기 내용
+  `writer_id` varchar(20) NOT NULL, -- 후기 작성자 아이디
+  `book_isbn` bigint NOT NULL, -- 책 게시글 번호
+  `review_reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 문의사항 등록일
+  PRIMARY KEY (`review_no`),
+  KEY `review_FK` (`writer_id`),
+  CONSTRAINT `review_FK` FOREIGN KEY (`writer_id`) REFERENCES `member` (`user_id`)
+);
+
+-- 답변 테이블
+CREATE TABLE `reviewanswer` (
+  `reviewanswer_no` int(11) NOT NULL AUTO_INCREMENT, -- 답변 번호
+  `review_no` int(11) NOT NULL, -- 문의사항 번호
+  `reviewanswer_content` varchar(8196) NOT NULL, -- 답변 내용
+  `a_writer_id` varchar(20) NOT NULL, -- 답변 작성자 아이디
+  `reviewanswer_reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 답변 등록일
+  PRIMARY KEY (`reviewanswer_no`),
+  KEY `fk_reviewanswer_review_no` (`review_no`),
+  KEY `reviewanswer_FK` (`a_writer_id`),
+  CONSTRAINT `reviewanswer_FK` FOREIGN KEY (`a_writer_id`) REFERENCES `member` (`user_id`),
+  CONSTRAINT `fk_reviewanswer_review_no` FOREIGN KEY (`review_no`) REFERENCES `review` (`review_no`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- 희망 도서 테이블
 CREATE TABLE `hope` (
   `hope_no` int(11) NOT NULL AUTO_INCREMENT, -- 희망 도서 번호

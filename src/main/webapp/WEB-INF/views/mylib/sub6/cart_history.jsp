@@ -93,6 +93,13 @@
                      <!-- 테이블 -->
                      <div class="table-wrap">
                         <c:if test="${not empty cart_history }">
+                        	 <div id="p_total">
+		                        <p class="book1">총 상품 가격 ${to_pay}</p>
+		                        <p class="book2">총 상품 주문수: ${to_count}</p>
+		                        <p class="book3"><strong>총 결제 예상 금액 : ${final_pay}</strong>
+		                        </p><br>
+		                        <button class="btn95">주문하기</button>
+		                     </div>
                            <table>
                               <thead>
                                  <tr>
@@ -155,7 +162,7 @@
                                           </form>
                                           
                                           
-                                          <form method="get" class="buy" onsubmit="return false;">
+                                          <form action="/buy/cart_buybook" method="post" class="buy" onsubmit="return false;">
                                              <sec:authorize access="isAuthenticated()">
                                                 <input type="hidden" class="user_email" name="user_email"
                                                    value=<sec:authentication property="principal.dto.user_email"/>>
@@ -175,8 +182,10 @@
                                              <input type="hidden" name="page" value="${cri.page}">
                                              <input type="hidden" name="type" value="${cri.type}">
                                              <input type="hidden" name="keyword" value="${cri.keyword}"> --%>
+                                             <input type="hidden" name="keyword" value="${cri.keyword }"> 
                                              <input type="hidden" name="priceStandard" value="${cart.priceStandard}">
-                                             <button type="button" class="apibtn btn" value="구매하기">구매</button>
+                                             <input type="submit" class="apibtn btn" value="구매">
+                                             <!-- <button type="button" class="apibtn btn" value="구매하기11">구1매</button> -->
                                           </form>
                                        </td>
                                     </tr>
@@ -207,13 +216,7 @@
                         </c:if>
 
                      </div>
-                     <div id="p_total">
-                        <p class="book1">총 상품 가격 ${to_pay}</p>
-                        <p class="book2">총 상품 주문수: ${to_count}</p>
-                        <p class="book3"><strong>총 결제 예상 금액 : ${final_pay}</strong>
-                        </p><br>
-                        <button class="btn95">주문하기</button>
-                     </div>
+                    
                      
                         
                      
@@ -329,40 +332,11 @@
             	   var data = {
             			   book_isbn: book_isbn
                      };
-                     
-                     $.ajax({
-                          type: "post",
-                          url: "/buy/buyChk",
-                          data: data,
-                          success: function(result) {
-                             
-                             if (result == "success") {
-                                alert("결제페이지로 넘어갑니다.");
-                               $(".buy").attr("action", "/buy/cart_buybook?detail=not");
-                               $(".buy").attr("onsubmit", "return true;");
-                               $(".buy").submit();
+            	   alert("결제 페이지로 넘어갑니다.");
+            	   $(".buy").attr("action", "/buy/cart_buybook");
+                   $(".buy").attr("onsubmit", "return true;");
+                   $(".buy").submit();
 
-                             }
-                          }
-                         });
-                    
-                    /* $.ajax({
-                     type: "get",
-                     url:'/buy/book_buy_api',
-                     dataType:'json',
-                     success:function(data){
-                             $("#buy").attr("onsubmit", "return true;");
-                             $("#buy").submit();
-                             
-                        var box = data.next_redirect_pc_url;
-                        var name = "credit"
-                        var option = "width = 500, height = 650, top = 100, left = 200,location = no ";
-                        window.open(box,name,option);
-                     },
-                     error:function(error){
-                        alert(error);
-                     }
-                    }); */
                } else {
                   alert("결제를 취소했습니다.");
                }

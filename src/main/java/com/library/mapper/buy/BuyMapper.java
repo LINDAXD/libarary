@@ -6,17 +6,23 @@ import com.library.model.search.BookDTO;
 
 public interface BuyMapper {
    
-   public int buy_check(@Param("user_id")String user_id, @Param("book_isbn")String book_isbn);
-
-   public void buy(BookDTO dto);
-   
-   public void pre_buy(BookDTO dto);
-   
-   public void cart_buy(BookDTO dto);
-   
-   public void count_buy(BookDTO dto);
-   
-   public void count_buy_update(BookDTO dto);
+	// 책 구매
+	public void buy(BookDTO dto);
+	
+	// 책 구매(포장)
+	public void pre_buy(BookDTO dto);
+	
+	// 구매 삭제
+	public void buy_not(BookDTO dto);
+	   
+	// 장바구니에서 구매하기
+	public void cart_buy(BookDTO dto);
+	   
+	// 장바구니 수량 불러오기
+	public void count_buy(BookDTO dto);
+	   
+	// 구매 내역 수량 업데이트
+	public void count_buy_update(BookDTO dto);
    
    
 }

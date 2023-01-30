@@ -35,11 +35,11 @@ public interface MyLoanHistoryMapper {
 	// 대출 수 출력
 	public int get_total_cart(@Param("user_id") String user_id);
 	
-	public int get_total_count(@Param("bookCount") String bookCount);
+	public int get_total_count(@Param("user_id") String user_id);
 	
-	public List<BookDTO> get_total_pay(@Param("bookCount") String bookCount, @Param("priceStandard") String priceStandard);
+	public List<BookDTO> get_total_pay(@Param("user_id") String user_id, @Param("priceStandard") String priceStandard);
 	
-	public int get_total_final(@Param("bookCount") String bookCount, @Param("priceStandard") String priceStandard);
+	public int get_total_final(@Param("user_id") String user_id, @Param("priceStandard") String priceStandard);
 	
 
 }

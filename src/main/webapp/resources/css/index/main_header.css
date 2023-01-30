@@ -2,7 +2,6 @@
 /* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
-body {overflow-x: hidden}
 .hide {
     overflow: hidden;
     position: absolute;
@@ -66,7 +65,6 @@ select, button {
     top: 0;
     left: 0;
     position: relative;
-    padding-top:30px;
     /* margin-top:-50px; */
 }
 
@@ -213,7 +211,6 @@ select, button {
     height: 4.5625em;
     margin-top: 10px;
     z-index: 100;
-	background-color: #ffffff;
 }
 
 
@@ -223,7 +220,6 @@ select, button {
     height: 4.5625em;
     margin: 0 auto; 
     display: block;
-    /* border:1px solid black; */
 }
 
 
@@ -237,7 +233,6 @@ select, button {
 
 .logo > a {
     background-repeat: no-repeat;
-    /* background-image: url('/images/raon-white.png'); */
     background-image: url(/resources/imges/index/ezen-logo-black.png);
     background-size: cover;
     width: 14.1em;
@@ -265,8 +260,10 @@ a:link {
     height: 4.5625em;
     width:800px;
     text-align: center;
+    /*background-color: lavenderblush;*/
     transform: none;
     list-style: outside;
+    /* border:1px solid blue; */
 }
 
 
@@ -279,7 +276,6 @@ a:link {
     font-weight: bold;
     margin:auto 15px;
     /* border: 1px solid #fff; */
-    z-index: 25;
 }
 .gnb-li > a {
     color: black;
@@ -315,143 +311,23 @@ a:link {
 
 
 /* ----------- 하단nav를 내리면 나타나는 소제목들을 설정하는 영역 -------------- */
-.sub-menu {
+/* .sub-menu {
     position: absolute;
     z-index: 49;
     padding-top: 0.75em;
     min-height: 15.625em;
     display: none;
     color:brown;
-/* box-shadow: 1px 1px 3px #666666; */
-/* 	background-color: #ffffff; */
-    margin-top:10px;
-    margin-left:10px;
-}
-
-
-
-
-
-
-
-
-.gnb{
-    width:100%;
-    height:60px;
-    background-color: #ffffff;
-/*     box-shadow: 0 3px 5px #999999; */
-}
-
-.bg{
+    background-color:rgba( 255, 255, 241, 0.5 );
+} */
+.sub-menu{
     position:absolute;
-    left:780px;
-    top:160px;
     width:800px;
-    height:100px;
-    background: #ffffff;
+    height:150px;
+    background-color: rgba(255,255,255,0.8);
     background-size: 300px 380px;
     z-index: 10;
-    border:1px solid red;
-/*     box-shadow: 0 0 5px #666666; */
-}/*js 추가태그*/
-
-#main_navi{
-    width:700px;
-    height:40px;
-    float:left;
-    margin-left:180px;
-    margin-top:20px;
-
-}/*메뉴*/
-.gnb-ul{
-    width:1600px;
-    height:40px;
-    background-color:#ffffff;
-}/*nav>ul*/
-.gnb-ul>li{
-    float:left;
-    width:140px;
-    height:40px;
-    text-align:center;
-    position:relative;
 }
-.gnb-ul>li>a{
-    color:#666666;
-    font-size:16px;
-    font-weight: bold;
-    width:140px;
-    height: 36px;
-    display: block;
-}
-
-.gnb-ul>li>.sub-menu{
-    position:absolute;
-    left:0;
-    top:30px;
-    z-index: 20;
-    width:140px;
-    height:50px;
-}/*하위 ul*/
-.gnb-ul>li>.sub-menu>li{
-    width:140px;
-    height: 35px;
-    line-height: 35px;
-}
-.gnb-ul>li>.sub-menu>li a{
-    width:140px;
-    height:35px;
-    display: block;
-}
-.gnb-ul>li>.sub-menu>li a:hover{
-    color:#000000;
-    font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .sm01 {
     width: 11em;
@@ -461,19 +337,18 @@ a:link {
 .sm02 {
     width: 11.05em;
     margin-left:-13.5px;
-    padding-left:28px;
+    padding-left:11px;
 }
 
 .sm03 {
     width: 11em;
     margin-left:-16px;
-    padding-left:27px;
+    padding-left:13px;
 }
 
 .sm04 {
     width: 13.2em;
     margin-left:-17px;
-    padding-left:30px;
 }
 
 .sm05 {
@@ -490,7 +365,6 @@ a:link {
     font-size: 0.875em;
     color: brown;
     margin:10px 0;
-/*     margin-left:20px; */
 }
 
 
@@ -657,16 +531,3 @@ input[type="text"] {
 	padding:10px;
 }
   
-/* .icons > li:not(:last-child){
-    margin-right: 10px;
-} */
-  
-/*   
-.icons .contents2 {
-    width:280px;
-    margin:auto;
-    letter-spacing: -1px;
-} */
-
-
-

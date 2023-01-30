@@ -28,11 +28,11 @@ public interface MyLoanHistoryService {
 	// 찜한 도서 건수 출력
 	public int get_total_cart(String user_id);
 	
-	public int get_total_count (String bookCount);
+	public int get_total_count (String user_id);
 	
-	public List<BookDTO> get_total_pay (String bookCount, String priceStandard );
+	public List<BookDTO> get_total_pay (String user_id, String priceStandard );
 	
 
-	public int get_total_final (String bookCount, String priceStandard );
+	public int get_total_final (String user_id, String priceStandard );
 
 }

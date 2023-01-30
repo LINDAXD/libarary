@@ -13,7 +13,7 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
       <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
       <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/library?useSSL=false"/>
-      <property name="username" value="library_test"/>
+      <property name="username" value="libray_test"/>
       <property name="password" value="12345"/>
 	</bean>
 
@@ -39,8 +39,10 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
 		<property name="host" value="smtp.gmail.com" />
 	    <property name="port" value="587" />
-	 	<property name="username" value="library.raon@gmail.com"/> <!-- 자신의 이메일 아이디 -->
-	 	<property name="password" value="iaijngmulxscwwvy"/> <!-- 자신의 비밀번호 -->
+<!-- 	 	<property name="username" value="jn0796@gmail.com"/> 자신의 이메일 아이디
+	 	<property name="password" value="dlwogh9905!"/> 자신의 비밀번호 -->
+ 	 	<property name="username" value="ezenbookcompany@gmail.com"/> <!-- 자신의 이메일 아이디 -->
+	 	<property name="password" value="aotqmibezeqzanej"/> <!-- 자신의 비밀번호 --> 
 	 <!-- 보안연결 TLS과 관련된 설정 -->
 	 	<property name="javaMailProperties">
 	    	<props>

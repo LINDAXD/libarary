@@ -11,6 +11,8 @@ public interface MyBuyHistoryMapper {
 
 	// 대출 내역 조회
 	public List<BookDTO> buy_history(@Param("user_id") String user_id, @Param("cri") Criteria cri);
+	
+	public List<BookDTO> r_buy_history(@Param("user_id") String user_id);
 
 	// 대출 수 출력
 	public int get_total_buy(@Param("user_id") String user_id);

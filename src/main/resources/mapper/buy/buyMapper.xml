@@ -5,41 +5,47 @@
   
 <mapper namespace="com.library.mapper.buy.BuyMapper"> <!-- 인터페이스 참조 -->
 
-   <!-- 도서 구매 -->
-   <insert id="buy">
-      insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
-      values   (#{priceStandard} + 2500, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
-      #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), 1)
-   </insert>
-   <insert id="pre_buy">
-      insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
-      values   (#{priceStandard} + 3500, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
-      #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), 1)
-   </insert>
-   <insert id="cart_buy">
-      insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
-      values   (#{priceStandard} * #{bookCount}, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
-      #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), #{bookCount})
-   </insert>
-   <update id="count_buy">
-      update buy_history A
-      INNER JOIN cart B ON A.book_title = B.book_title
-      set A.bookCount = B.bookCount
-      where A.book_title = #{book_title}
-   </update>
-   <update id="count_buy_update">
-      update buy_history A
-      INNER JOIN cart B ON A.book_title = B.book_title
-      set A.book_price = #{priceStandard} * B.bookCount
-      where A.book_title = #{book_title}
-   </update>
-   <!-- 이미 찜한 도서인지 체크 -->
-   <select id="buy_check" resultType="int">
-      select count(*)
-        from buy_history
-       where user_id = #{user_id} and book_isbn = #{book_isbn} 
-   </select>
+	<!-- 도서 구매 -->
+	<insert id="buy">
+	   insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
+	   values   (#{priceStandard} + 2500, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
+	   #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), 1)
+	</insert>
+	
+	<!-- 도서 구매(포장) -->
+	<insert id="pre_buy">
+	   insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
+	   values   (#{priceStandard} + 3500, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
+	   #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), 1)
+	</insert>
+	
+	<!-- 장바구니에서 구매 -->
+	<insert id="cart_buy">
+	   insert into buy_history(book_price, user_id, user_email, book_title, book_author, book_isbn, book_cover, book_pubDate, book_publisher, return_period, bookCount)
+	   values   (#{priceStandard} * #{bookCount} + 2500, #{user_id}, #{user_email}, #{book_title}, #{book_author}, #{book_isbn}, #{book_cover}, 
+	   #{book_pubDate}, #{book_publisher}, adddate(current_timestamp, 3), #{bookCount})
+	</insert>
+	
+	<!-- 장바구니 수량 불러오기 -->
+	<update id="count_buy">
+	   update buy_history A
+	   INNER JOIN cart B ON A.book_title = B.book_title
+	   set A.bookCount = B.bookCount
+	   where A.book_title = #{book_title}
+	</update>
+	
+	<!-- 구매 내역 수량 업데이트 -->
+	<update id="count_buy_update">
+	   update buy_history A
+	   INNER JOIN cart B ON A.book_title = B.book_title
+	   set A.book_price = #{priceStandard} * B.bookCount + 2500
+	   where A.book_title = #{book_title}
+	</update>
    
-   
-   
+	<delete id="buy_not">
+		delete from buy_history
+		order by buy_date desc limit 1
+	</delete>
+	
+	
 </mapper>  

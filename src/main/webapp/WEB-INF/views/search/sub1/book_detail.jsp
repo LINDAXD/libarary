@@ -133,7 +133,9 @@
 														<input type="hidden" name="type" value="${cri.type }">
 														<input type="hidden" name="keyword" value="${cri.keyword }">
 													</form>
-													<!--============ 찜하기 추가 =========== -->
+													
+													
+													<!--============ 찜하기 =========== -->
 													<form id="like" onsubmit="return false;" method="post">
 													
 														<sec:authorize access="isAuthenticated()">

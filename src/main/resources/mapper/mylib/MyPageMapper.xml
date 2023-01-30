@@ -25,6 +25,39 @@
  			 where user_id = #{user_id}
  		</delete>
  		
+ 		<!-- 탈퇴 회원 테이블 삭제 -->
+ 		<delete id="delete_buyhistory">
+ 			delete from buy_history
+ 		</delete>
+ 		<delete id="delete_cart">
+ 			delete from cart
+ 		</delete>
+ 		<delete id="delete_likehistory">
+ 			delete from like_history
+ 		</delete>
+ 		<delete id="delete_loanhistory">
+ 			delete from loan_history
+ 		</delete>
+ 		<delete id="delete_review">
+ 			delete from review
+ 		</delete>
+ 		
+ 		<delete id="delete_hope">
+ 			delete from hope
+ 		</delete>
+ 		<delete id="delete_recommend_book">
+ 			delete from recommend_book
+ 		</delete>
+ 		<delete id="delete_notice">
+ 			delete from notice
+ 		</delete>
+ 		<delete id="delete_answer">
+ 			delete from answer
+ 		</delete>
+ 		<delete id="delete_enquiry">
+ 			delete from enquiry
+ 		</delete>
+ 		
  		<!-- 탈퇴회원 테이블에 입력 -->
  		<insert id="insert_secession">
  			insert into secession_member values(#{user_id}, #{user_email});

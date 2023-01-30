@@ -21,5 +21,13 @@
 			  order by buy_date desc
 			  limit #{cri.skip}, #{cri.amount}
 		</select>
+		
+		<select id="r_buy_history" resultType="com.library.model.search.BookDTO">
+			select * 
+			  from buy_history
+			 where user_id = #{user_id}
+			  order by buy_date desc
+			  limit 1
+		</select>
 
 	</mapper>
